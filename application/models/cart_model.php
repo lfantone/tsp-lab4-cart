@@ -39,12 +39,12 @@
 			if ($query->num_rows > 0) {
 				foreach ($this->cart->contents() as $item) {					
 					if ($item['id'] == $id) {											
-						if ($item['qty'] >= 5 AND $item['qty'] <= 10 AND ($item['price'] != $row->base_price-$row->base_price*0.10)) {								
+						if ($item['qty'] + $qty >= 5 AND $item['qty'] <= 10 AND ($item['price'] != $row->base_price-$row->base_price*0.10)) {								
 							$data = array('rowid'=>$item['rowid'], 'qty'=>$item['qty'] + $qty, 'price'=>$row->base_price - $row->base_price*0.10);
 							$this->cart->update($data);
 							return TRUE;
 						}
-						if ($item['qty'] >= 10 AND ($item['price'] != $row->base_price-$row->base_price*0.25)) {	
+						if ($item['qty'] + $qty >= 10 AND ($item['price'] != $row->base_price-$row->base_price*0.25)) {	
 							$data = array('rowid'=>$item['rowid'], 'qty'=>$item['qty'] + $qty, 'price'=>$row->base_price - $row->base_price*0.25);
 							$this->cart->update($data);
 							return TRUE;
