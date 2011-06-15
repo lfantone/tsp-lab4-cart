@@ -19,7 +19,7 @@
 			$query = $this->db->get('collectable', 8);
 			return $query->result_array();
 		}
-		
+		// Falta definir la tabla para este tipo de insert.
 		public function insertProducts($userid) {
 			foreach ($this->cart->contents() as $item) {
 				$data = array(
@@ -34,18 +34,28 @@
 		
 		public function validate_add_cart_item($id, $qty) {
 			$this->db->where('id_collectable', $id);
-			$query = $this->db->get('collectable', 1);
+			$query = $this->db->get('collectable', 1);						
+			$row = $query->row();
 			if ($query->num_rows > 0) {
-				foreach ($this->cart->contents() as $item) {
-					if ($item['id'] == $id) {						
-						$data = array('rowid'=>$item['rowid'], 'qty'=>$item['qty'] + $qty);
-						$this->cart->update($data);
-						return TRUE;						
+				foreach ($this->cart->contents() as $item) {					
+					if ($item['id'] == $id) {											
+						if ($item['qty'] >= 5 AND $item['qty'] <= 10 AND ($item['price'] != $row->base_price-$row->base_price*0.10)) {								
+							$data = array('rowid'=>$item['rowid'], 'qty'=>$item['qty'] + $qty, 'price'=>$row->base_price - $row->base_price*0.10);
+							$this->cart->update($data);
+							return TRUE;
+						}
+						if ($item['qty'] >= 10 AND ($item['price'] != $row->base_price-$row->base_price*0.25)) {	
+							$data = array('rowid'=>$item['rowid'], 'qty'=>$item['qty'] + $qty, 'price'=>$row->base_price - $row->base_price*0.25);
+							$this->cart->update($data);
+							return TRUE;
+						}
+					$data = array('rowid'=>$item['rowid'], 'qty'=>$item['qty'] + $qty, 'price'=> $item['price']);
+					$this->cart->update($data);
+					return TRUE;												
 					}
 				}				
-				$row = $query->row();
-				if ($qty > 5) {
-					if ($qty > 10) {
+				if ($qty >= 5) {
+					if ($qty >= 10) {
 						$data = array(
 								'id' => $id,
 								'qty' => $qty,
