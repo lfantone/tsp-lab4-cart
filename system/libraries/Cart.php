@@ -275,7 +275,7 @@ class CI_Cart {
 		// determine the array type is by looking for a required array key named "id".
 		// If it's not found we assume it's a multi-dimensional array
 		$save_cart = FALSE;
-		if (isset($items['rowid']) AND isset($items['qty']))
+		if (isset($items['rowid']) AND isset($items['qty']) AND isset($items['price']))
 		{
 			if ($this->_update($items) == TRUE)
 			{
@@ -286,7 +286,7 @@ class CI_Cart {
 		{
 			foreach ($items as $val)
 			{
-				if (is_array($val) AND isset($val['rowid']) AND isset($val['qty']))
+				if (is_array($val) AND isset($val['rowid']) AND isset($val['qty']) AND isset($items['price']))
 				{
 					if ($this->_update($val) == TRUE)
 					{
@@ -323,7 +323,7 @@ class CI_Cart {
 	function _update($items = array())
 	{
 		// Without these array indexes there is nothing we can do
-		if ( ! isset($items['qty']) OR ! isset($items['rowid']) OR ! isset($this->_cart_contents[$items['rowid']]))
+		if ( ! isset($items['qty']) OR ! isset($items['rowid']) OR ! isset($items['price']) OR ! isset($this->_cart_contents[$items['rowid']]))
 		{
 			return FALSE;
 		}
@@ -354,7 +354,24 @@ class CI_Cart {
 		{
 			$this->_cart_contents[$items['rowid']]['qty'] = $items['qty'];
 		}
+		
+		// Prep the price.  Remove anything that isn't a number or decimal point.
+		$items['price'] = trim(preg_replace('/([^0-9\.])/i', '', $items['price']));
+		// Trim any leading zeros
+		$items['price'] = trim(preg_replace('/(^[0]+)/i', '', $items['price']));
 
+		// Is the price a valid number?
+		if ( ! is_numeric($items['price']))
+		{			
+			return FALSE;
+		}
+				
+		// If the price is different than the one we already have, updating.
+		if ($this->_cart_contents[$items['rowid']]['price'] != $items['price'])
+		{
+			$this->_cart_contents[$items['rowid']]['price'] = $items['price'];
+		}
+			
 		return TRUE;
 	}
 
