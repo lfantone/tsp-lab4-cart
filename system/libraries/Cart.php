@@ -342,36 +342,35 @@ class CI_Cart {
 		if ($this->_cart_contents[$items['rowid']]['qty'] == $items['qty'])
 		{
 			return FALSE;
+		}		
+			
+		// Borramos todo aquello que no sean numeros ni puntos.
+		$items['price'] = trim(preg_replace('/([^0-9\.])/i', '', $items['price']));
+		// Borramos los ceros que tenga adelante
+		$items['price'] = trim(preg_replace('/(^[0]+)/i', '', $items['price']));
+
+		// El precio es un número válido ?
+		if ( ! is_numeric($items['price']))
+		{			
+			return FALSE;
+		}
+				
+		// Si el precio difiere, se actualiza.
+		if ($this->_cart_contents[$items['rowid']]['price'] != $items['price'])
+		{
+			$this->_cart_contents[$items['rowid']]['price'] = $items['price'];
 		}
 
 		// Is the quantity zero?  If so we will remove the item from the cart.
 		// If the quantity is greater than zero we are updating
 		if ($items['qty'] == 0)
 		{
-			unset($this->_cart_contents[$items['rowid']]);
+			unset($this->_cart_contents[$items['rowid']]);			
 		}
 		else
 		{
 			$this->_cart_contents[$items['rowid']]['qty'] = $items['qty'];
-		}
-		
-		// Prep the price.  Remove anything that isn't a number or decimal point.
-		$items['price'] = trim(preg_replace('/([^0-9\.])/i', '', $items['price']));
-		// Trim any leading zeros
-		$items['price'] = trim(preg_replace('/(^[0]+)/i', '', $items['price']));
-
-		// Is the price a valid number?
-		if ( ! is_numeric($items['price']))
-		{			
-			return FALSE;
-		}
-				
-		// If the price is different than the one we already have, updating.
-		if ($this->_cart_contents[$items['rowid']]['price'] != $items['price'])
-		{
-			$this->_cart_contents[$items['rowid']]['price'] = $items['price'];
-		}
-			
+		}			
 		return TRUE;
 	}
 

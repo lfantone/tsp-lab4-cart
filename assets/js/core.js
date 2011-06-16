@@ -1,8 +1,8 @@
 $(document).ready(function() {
-	var link = "/CI-Test/index.php/"; 
+	var link = "/tsp-lab4-cart/index.php/"; 
 	$("table.productos_lista tbody tr form").submit(function() {
 		var id = $(this).find('input[name=id_collectable]').val();  
-		var qty = $(this).find('input[name=quantity]').val();		
+		var qty = $(this).find('input[name=quantity]').val();
 		$.post(link + "cart/add_cart_item", { id_collectable: id, quantity: qty, ajax: '1' },  
         function(data) {
 			if(data == 'true') {

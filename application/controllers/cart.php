@@ -11,9 +11,9 @@
 		}
 		
 		public function index() {
-			$data['offers'] = $this->cart_model->getOffers();
+			$data['offers'] = $this->cart_model->get_offers();
 			$data['content_offers'] = 'offers';
-			$data['collectable'] = $this->cart_model->getProducts();
+			$data['collectable'] = $this->cart_model->get_products();
 			$data['content_collectable'] = 'collectable';
 			
 			$this->load->view('index', $data);
@@ -36,8 +36,8 @@
 		}
 		
 		public function update_cart() {
-			$this->cart_model->validate_update_cart($this->input->post('rowid'), $this->input->post('qty'));
-			redirect('cart'); 
+			$this->cart_model->validate_update_cart($this->input->post('rowid'), $this->input->post('qty'), $this->input->post('price'));
+			//redirect('cart'); 
 		}
 		
 		public function empty_cart() {

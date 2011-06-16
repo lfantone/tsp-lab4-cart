@@ -1,6 +1,6 @@
 <?php 
 	if(!$this->cart->contents()) {  
-    	echo 'No tenes ningun producto.';  
+    	echo 'No tenés ningún producto.';  
 	} else {  
 ?>  
 		<?=form_open('cart/update_cart')?>  
@@ -15,7 +15,8 @@
     			</thead>  
     			<tbody>        		  
 	        		<?php foreach($this->cart->contents() as $items) {
-	        			echo form_hidden('rowid[]', $items['rowid']);?>  
+	        			echo form_hidden('rowid[]', $items['rowid']);
+	        			echo form_hidden('price[]', $items['price']);?>  
 	        		<tr <?php if(alternator('0', '1')) { echo 'class="alt"'; }?>>  
 	            		<td><?=form_input(array('name' => 'qty[]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5'))?></td>  
 	  					<td><?=$items['name']?></td>  
