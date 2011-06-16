@@ -354,13 +354,13 @@ class CI_Cart {
 		{			
 			return FALSE;
 		}
-				
-		// Si el precio difiere, se actualiza.
+			
+		// Si el precio es diferente, se actualiza.
 		if ($this->_cart_contents[$items['rowid']]['price'] != $items['price'])
 		{
 			$this->_cart_contents[$items['rowid']]['price'] = $items['price'];
 		}
-
+		
 		// Is the quantity zero?  If so we will remove the item from the cart.
 		// If the quantity is greater than zero we are updating
 		if ($items['qty'] == 0)
