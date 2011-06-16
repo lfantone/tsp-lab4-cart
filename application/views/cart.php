@@ -16,7 +16,7 @@
     			<tbody>        		  
 	        		<?php foreach($this->cart->contents() as $items) {
 	        			echo form_hidden('rowid[]', $items['rowid']);
-	        			echo form_hidden('price[]', $items['price']);?>  
+	        			echo form_hidden('id[]', $items['id']);?>  
 	        		<tr <?php if(alternator('0', '1')) { echo 'class="alt"'; }?>>  
 	            		<td><?=form_input(array('name' => 'qty[]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5'))?></td>  
 	  					<td><?=$items['name']?></td>  
