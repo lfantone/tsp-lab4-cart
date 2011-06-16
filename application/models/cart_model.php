@@ -38,49 +38,20 @@
 			$row = $query->row();
 			if ($query->num_rows > 0) {
 				foreach ($this->cart->contents() as $items) {					
-					if ($items['id'] == $id) {											
-						/*
-						if ($items['qty'] + $qty >= 5 AND $items['qty'] + $qty <= 10 AND ($items['price'] != $row->base_price-$row->base_price*0.10)) {								
-							$data = array('rowid'=>$items['rowid'], 'qty'=>$items['qty'] + $qty, 'price'=>$row->base_price - $row->base_price*0.10);
-							$this->cart->update($data);
-							return TRUE;
-						}
-						if ($items['qty'] + $qty >= 10 AND ($items['price'] != $row->base_price-$row->base_price*0.25)) {	
-							$data = array('rowid'=>$items['rowid'], 'qty'=>$items['qty'] + $qty, 'price'=>$row->base_price - $row->base_price*0.25);
-							$this->cart->update($data);
-							return TRUE;
-						}*/						
+					if ($items['id'] == $id) {							
 						$data = array(
-								'rowid '=> $items['rowid'],
-								'qty' => $items['qty'] + $qty,
-								'price' => $this->quantity_price($row->base_price, $items['qty'] + $qty));
+									'rowid'=>$items['rowid'], 
+									'qty'=>$items['qty'] + $qty, 
+									'price'=> $this->quantity_price($row->base_price, $items['qty'] + $qty));
 						$this->cart->update($data);
 						return TRUE;												
 					}
 				}				
-				/*if ($qty >= 5) {
-					if ($qty >= 10) {
-						$data = array(
-								'id' => $id,
-								'qty' => $qty,
-								'price' => $row->base_price-$row->base_price*0.25,
-								'name' => $row->collectable_name);
-						$this->cart->insert($data);
-						return TRUE;	
-					}
-					$data = array(
-								'id' => $id,
-								'qty' => $qty,
-								'price' => $row->base_price-$row->base_price*0.10,
-								'name' => $row->collectable_name);
-					$this->cart->insert($data);
-					return TRUE;							
-				}*/
 				$data = array(
-						'id' => $id,
-						'qty' => $qty,
-						'price' => $this->quantity_price($row->base_price, $qty),
-						'name' => $row->collectable_name);
+							'id' => $id,
+							'qty' => $qty,
+							'price' => $this->quantity_price($row->base_price, $qty),
+							'name' => $row->collectable_name);
 				$this->cart->insert($data);
 				return TRUE;								
 			} else {
@@ -88,25 +59,39 @@
 			}
 		}
 		
-		public function validate_update_cart($rowid, $qty, $price) {
+		public function validate_update_cart($rowid, $qty, $id) {
 			$total = $this->cart->total_items();			
 			for ($i=0 ; $i < $total ; $i++) {
 				$data = array(
 						'rowid' => $rowid[$i], 
 						'qty' => $qty[$i], 
-						'price' => $this->quantity_price($price[$i], $qty[$i]));
-				print_r($data);
+						'price' => $this->quantity_price_id($id[$i], $qty[$i]));
 				$this->cart->update($data);
 			}
 		}
 		
-		public function quantity_price($base_price, $qty) {			
+		private function quantity_price($base_price, $qty) {			
+			if ($qty >= 5 AND $qty < 10) {
+				return $new_price = $base_price - $base_price * 0.10;
+			}
+			if ($qty >= 10) {
+				return $new_price = $base_price - $base_price * 0.25;				 
+			}						
+			return $base_price;			
+		}
+		
+		private function quantity_price_id($id, $qty) {
+			$this->db->where('id_collectable', $id);
+			$query = $this->db->get('collectable', 1);						
+			$row = $query->row();			
+			if ($query->num_rows > 0) {
 				if ($qty >= 5 AND $qty < 10) {
-					return $new_price = $base_price - $base_price * 0.10;
+					return $new_price = $row->base_price - $row->base_price * 0.10;
 				}
 				if ($qty >= 10) {
-					return $new_price = $base_price - $base_price * 0.25;				 
+					return $new_price = $row->base_price - $row->base_price * 0.25;				 
 				}
-				return $base_price;			
+			}				
+			return $row->base_price;
 		}
 	}
