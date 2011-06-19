@@ -26,7 +26,7 @@ class Controlregistro extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('registrousuario');
 		} else {			/* VALIDACIONES */
-			if ($this->controlregistro_model->insert_newUser($this->input->post('firstname'), $this->input->post('lastname'), do_hash($this->input->post('password')), $this->input->post('email'), $this->input->post('address'), $this->input->post('address_number'), $this->input->post('city'))) {
+			if ($this->controlregistro_model->insert_newUser($this->input->post('firstname'), $this->input->post('lastname'), $this->encrypt->encode($this->input->post('password')), $this->input->post('email'), $this->input->post('address'), $this->input->post('address_number'), $this->input->post('city'))) {
 				$this->load->view('registrocorrecto');
 			} else {
 				$this->load->view('registroErr');
