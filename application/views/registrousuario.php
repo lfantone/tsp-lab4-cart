@@ -11,7 +11,7 @@
 <body>
 	<div id="form1">
 	<table>	
-		<?php echo validation_errors();?>
+		<?php // echo validation_errors();?>
 		<?php echo form_open('controlregistro/new_user'); ?>
 		
 		<tr>
