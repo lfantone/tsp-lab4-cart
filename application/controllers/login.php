@@ -6,11 +6,11 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');				
-		$this->load->helper('security');
+		//$this->load->helper('security');
 	}
 
    function index($idioma=null) {
-		
+
 		$mail = $this->input->post('email');
         if(!isset($mail)) {// Primer ingreso   
 			$this->load->view('login');
@@ -26,7 +26,7 @@ class Login extends CI_Controller {
 			/* SI PASA LAS VALIDACIONES */
 			} else {     
 				$this->load->model('login_model');
-				$Valido = $this->login_model->CheckUserAndPass($mail,do_hash($this->input->post('password')));
+				$Valido = $this->login_model->CheckUserAndPass($mail,$this->encrypt->encode($this->input->post('password')));
 				
 				if($Valido) {
 				   redirect('cart');
