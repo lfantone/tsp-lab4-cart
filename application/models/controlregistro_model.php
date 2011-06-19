@@ -21,7 +21,7 @@
 						'nombre' => $firstname,
 						'apellido' => $lastname, 
 						'mail' => $mail, 
-						'password' => $pwd,
+						'password' => $this->encrypt->decode($pwd),
 						'id_domicilio' => $row->id_domicilio,
 						'tipo_usuario' => '2');
 			$this->db->insert('usuarios', $usuario);
