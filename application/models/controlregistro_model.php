@@ -28,4 +28,15 @@
 			
 			return TRUE;
 		}
+                
+                public function CheckIfExist($email){
+			$query = $this->db->where('mail',$email);
+			$query = $this->db->get('usuarios');
+			
+			if($query->num_rows > 0)
+				return TRUE;
+			else
+				return FALSE;
+		}
 	}
+?>
