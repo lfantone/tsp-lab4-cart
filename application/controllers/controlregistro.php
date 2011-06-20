@@ -20,7 +20,7 @@ class Controlregistro extends CI_Controller {
 		$this->form_validation->set_rules('passconf', 'Confirme Contraseña', 'required|matches[password]');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[50]|callback_username_check');
 		$this->form_validation->set_rules('address', 'Dirección', 'required|min_length[2]|max_length[50]');
-		$this->form_validation->set_rules('address_number', 'Número de Dirección', 'required|min_length[1]|max_length[10]|numeric');
+		$this->form_validation->set_rules('address_number', 'Número de Dirección', 'required|min_length[1]|max_length[10]|is_natural_no_zero');
 		$this->form_validation->set_rules('city', 'Localidad', 'required|min_length[2]|max_length[50]|');
 		
 		if ($this->form_validation->run() == FALSE) {
