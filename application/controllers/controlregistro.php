@@ -14,14 +14,14 @@ class Controlregistro extends CI_Controller {
 	}
 	
 	public function new_user() {
-		$this->form_validation->set_rules('firstname', 'Nombre', 'required|min_length[2]|max_length[30]');
-		$this->form_validation->set_rules('lastname', 'Apellido', 'required|min_length[2]|max_length[30]');
+		$this->form_validation->set_rules('firstname', 'Nombre', 'required|min_length[2]|max_length[30]|alpha');
+		$this->form_validation->set_rules('lastname', 'Apellido', 'required|min_length[2]|max_length[30]|alpha');
 		$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[30]');
 		$this->form_validation->set_rules('passconf', 'Confirme Contraseña', 'required|matches[password]');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[50]|callback_username_check');
-		$this->form_validation->set_rules('address', 'Dirección', 'required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('address', 'Dirección', 'required|min_length[2]|max_length[50]|alpha_numeric');
 		$this->form_validation->set_rules('address_number', 'Número de Dirección', 'required|min_length[1]|max_length[10]|is_natural_no_zero');
-		$this->form_validation->set_rules('city', 'Localidad', 'required|min_length[2]|max_length[50]|');
+		$this->form_validation->set_rules('city', 'Localidad', 'required|min_length[2]|max_length[50]|alpha_numeric');
 		
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('registrousuario');
