@@ -21,11 +21,22 @@
 						'nombre' => $firstname,
 						'apellido' => $lastname, 
 						'mail' => $mail, 
-						'password' => $pwd,
+						'password' => $this->encrypt->decode($pwd),
 						'id_domicilio' => $row->id_domicilio,
 						'tipo_usuario' => '2');
 			$this->db->insert('usuarios', $usuario);
 			
 			return TRUE;
 		}
+                
+                public function CheckIfExist($email){
+			$query = $this->db->where('mail',$email);
+			$query = $this->db->get('usuarios');
+			
+			if($query->num_rows > 0)
+				return TRUE;
+			else
+				return FALSE;
+		}
 	}
+?>
