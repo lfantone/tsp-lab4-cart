@@ -65,7 +65,7 @@
 		
 		<tr>
 		<td>
-			Localidad: <?php echo form_input('city', set_value('lastname'), 'size="50"');?> 
+			Localidad: <?php echo form_input('city', set_value('city'), 'size="50"');?> 
 			<label id="req">* <?php echo form_error('city'); ?> </label>
 		</td>
 		</tr>
