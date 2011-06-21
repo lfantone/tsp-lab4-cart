@@ -52,11 +52,9 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-<<<<<<< HEAD
-$autoload['libraries'] = array();
-=======
-$autoload['libraries'] = array('database','form_validation','encrypt');
->>>>>>> de7319b30ab1fef9cd8257284caac78d25dd4aed
+
+$autoload['libraries'] = array('database','form_validation','encrypt', 'security');
+
 
 
 /*
@@ -68,7 +66,7 @@ $autoload['libraries'] = array('database','form_validation','encrypt');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('form', 'url');
 
 
 /*
