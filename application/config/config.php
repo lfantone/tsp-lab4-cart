@@ -26,7 +26,11 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
+<<<<<<< HEAD
 $config['index_page'] = '';
+=======
+$config['index_page'] = 'index.php';
+>>>>>>> de7319b30ab1fef9cd8257284caac78d25dd4aed
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +48,11 @@ $config['index_page'] = '';
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
+<<<<<<< HEAD
 $config['uri_protocol']	= 'QUERY_STRING';
+=======
+$config['uri_protocol']	= 'AUTO';
+>>>>>>> de7319b30ab1fef9cd8257284caac78d25dd4aed
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +77,11 @@ $config['url_suffix'] = '.html';
 | than english.
 |
 */
+<<<<<<< HEAD
 $config['language']	= 'english';
+=======
+$config['language']	= 'spanish';
+>>>>>>> de7319b30ab1fef9cd8257284caac78d25dd4aed
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +236,11 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
+<<<<<<< HEAD
 $config['encryption_key'] = 'inthefleshEncryptionKey';
+=======
+$config['encryption_key'] = '0123456789qwertyuiopasdfghjklzxc';
+>>>>>>> de7319b30ab1fef9cd8257284caac78d25dd4aed
 
 /*
 |--------------------------------------------------------------------------
