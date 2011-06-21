@@ -162,8 +162,8 @@ class CI_Cart {
 		// Trim any leading zeros
 		$items['qty'] = trim(preg_replace('/(^[0]+)/i', '', $items['qty']));
 
-		// If the quantity is zero or blank there's nothing for us to do
-		if ( ! is_numeric($items['qty']) OR $items['qty'] == 0)
+		// If the quantity is zero, negative or blank there's nothing for us to do
+		if ( ! is_numeric($items['qty']) OR $items['qty'] < 0)
 		{
 			return FALSE;
 		}
@@ -331,8 +331,8 @@ class CI_Cart {
 		// Prep the quantity
 		$items['qty'] = preg_replace('/([^0-9])/i', '', $items['qty']);
 
-		// Is the quantity a number?
-		if ( ! is_numeric($items['qty']))
+		// Is the quantity a positive number?
+		if ( ! is_numeric($items['qty']) OR $items['qty'] < 0)
 		{
 			return FALSE;
 		}
