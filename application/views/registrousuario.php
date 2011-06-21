@@ -12,7 +12,7 @@
 	<div id="form1">
 	<table>	
 		<?php // echo validation_errors();?>
-		<?php echo form_open('controlregistro/new_user'); ?>
+		<?php echo form_open('registro/new_user'); ?>
 		
 		<tr>
 		<td>
