@@ -57,25 +57,5 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-<<<<<<< HEAD
-=======
-/*$db['default']['hostname'] = 'cringer.contenta';
-$db['default']['username'] = 'contenta';
-$db['default']['password'] = 'contenta';
-$db['default']['database'] = 'gaming-desa';
-$db['default']['dbdriver'] = 'postgre';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
-*/
-
->>>>>>> de7319b30ab1fef9cd8257284caac78d25dd4aed
 /* End of file database.php */
 /* Location: ./application/config/database.php */
