@@ -6,40 +6,32 @@ class Alta_model extends CI_Model {
     }  
     
     public function get_proveedores() {
-		$this->db->select('id_proveedor', 'razon_social');
-		$query = $this->db->get('proveedores');
-		return $query->result_array();
+		$this->db->select('id_collectable, collectable_name');
+		$query = $this->db->get('collectable', 3);
+    	if ($query->num_rows() > 0) {
+    		return $this->rearrange_array($query->result_array());
+    	}
     }
     
 	public function get_categorias() {
-    	$this->db->select('id_categoria', 'nombre');
-    	$query = $this-db-get('categorias');
-    	return $query->result_array();
+    	$this->db->select('id_city, city_name');
+    	$query = $this->db->get('city', 3);
+    	if ($query->num_rows() > 0) {
+    		return $this->rearrange_array($query->result_array());
+    	}
     }
     
-    public function test_array() {
-    	$this->db->select('id_collectable, collectable_name');
-    	$query = $this->db->get('collectable', 5);    	
-    	
-    	if ($query->num_rows() > 0) {
-    		$values = array_values($query->row_array());
-    		if (count($values) === 2) {
-    			$key = $values[0];
-    			$val = $values[1];    				
-    			$data = array($key=>$val);
-    		}
-    		foreach ($query->result_array() as $row) {
+    private function rearrange_array($d, $data = array()) {    	  	
+    	foreach ($d as $row) {
     			$values = array_values($row);
     			if (count($values) === 2) {
     				$key = $values[0];
     				$val = $values[1];    				
-    				$end = array($key=>$val);
-    			}    			
-    			$data = array_merge($data, $end);    			
-    		}
-    	}    	
+    				$data[$key] = $val;
+    			}   			
+    	}   	
     	return $data;
-    } 
+    }
     
    	public function insert_productos($descripcion,$precio,$stock,$id_categoria,$id_proveedor,$oferta) {
         $data = array(
