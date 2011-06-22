@@ -1,77 +1,59 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Nuevo Usuario</title>
+	<title>Nuevo Producto</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/structure.css" type="text/css" />
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/form.css" type="text/css" />
 </head>
-<body>
-	<div id="Alta_productos">
-	<table>	
-		<?php echo form_open('alta/new_producto'); ?>
-		
-		<tr>
-		<td>
-			Descripci&oacute;n: <?php echo form_input('descripcion', set_value('descripcion'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('descripcion'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Precio: <?php echo form_input('precio', set_value('precio'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('precio'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Stock: <?php echo form_input('stock', set_value('stock'), 'size="5"');?> 
-			<label id="req">* <?php echo form_error('stock'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Oferta:	<?php echo form_checkbox('oferta', '1', FALSE);?>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Proveedor: <?php echo form_dropdown('proveedor',  array(
-                  '1'  => 'Small Shirt',
-                  '2'    => 'Medium Shirt',
-                  '3'   => 'Large Shirt',
-                  '4' => 'Extra Large Shirt',
-                ));?> 
-			<label id="req">* <?php echo form_error('proveedor'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Categor&iacute;a: <?php echo form_dropdown('categoria',  array(
-                  '1'  => 'Memorias',
-                  '2'    => 'Procesadores',
-                  '3'   => 'Video',
-                  '4' => 'Accesorios',
-                ));?>
-			<label id="req">* <?php echo form_error('categoria'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			<p id="req">* Campos requeridos</p>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			<div><?php echo form_submit('agregar', 'Agregar');?></div>
-		</td>
-		</tr>
-		
-		<?php echo form_close();?>	
-	</table>
-</div>
+<body id="public">
+	<div id="container">
+		<?php echo form_open('alta/new_producto', 'class="form_new_producto"');?>		
+		<header id="header" class="info">
+			<h2>Agregar nuevo producto</h2>
+		</header>
+		<ul>	
+			<li class="item1">
+				<?php echo form_label('Descripci&oacute;n', 'descripcion');?>
+				<div>
+					<?php echo form_input('descripcion', set_value('descripcion'), 'size="8" tabindex="1" maxlength="50"');?>
+				</div>
+			</li>			
+			<li class="item2">
+				<?php echo form_label('Precio', 'precio');?>
+				<div>
+					<?php echo form_input('precio', set_value('precio'), 'size="8" tabindex="2" maxlength="50"');?>
+				</div>
+			</li>			
+			<li class="item3">
+				<?php echo form_label('Stock', 'stock');?>
+				<div>
+					<?php echo form_input('stock', set_value('Stock'), 'size="8" tabindex="3" maxlength="2"');?>
+				</div>
+			</li>			
+			<li class="item4">				
+				<div>
+					<span class="left">						
+						<?php echo form_label('Proveedor', 'proveedor');?>
+						<?php echo form_dropdown('proveedor', $proveedores, '', 'tabindex="5"');?>
+					</span>
+					<span>						
+						<?php echo form_label('Categor&iacute;a', 'categoria');?>
+						<?php echo form_dropdown('categoria', $categorias, '', 'tabindex="6"'); ?>
+					</span>
+					<span class="right">
+						<?php echo form_label('Oferta', 'oferta');?>
+						<?php echo form_checkbox('oferta', '1', FALSE, 'tabindex="4"');?>
+					</span>
+				</div>
+			</li>
+			<li class="button">
+				<div>
+					<?php echo form_submit('agregar', 'Agregar', 'class="btSubmit"');?>
+				</div>
+			</li>			
+		</ul>
+		<?php echo form_close();?>
+	</div>
 </body>
 </html>
