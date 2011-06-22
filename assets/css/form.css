@@ -1,0 +1,237 @@
+.form_new_producto{
+	font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+	letter-spacing:.01em;
+}
+.form_new_producto li{
+	width:64%;
+}
+
+.info{
+	display:inline-block; 
+	clear:both;
+	margin:10px 0px 0px 5px;
+	padding:0 2% 0em 2%;
+	border-bottom:1px dotted #ccc;
+	text-align:center;
+}
+.info[class]{
+	display:block;
+}
+.info h2{
+	font-weight:normal;
+	font-size:160%;
+	margin:0 0 5px 0;
+	clear:left;
+}
+.info div{
+	font-size:95%;
+	line-height:135%;
+	color:#555;
+}
+
+/* ----- Field Structure ----- */
+
+form ul{
+	margin:1px;
+	padding:4px;
+	list-style-type:none;
+}
+
+form li{
+	margin:0;
+	padding:6px 1% 9px 1%;
+	clear:both;
+	background-color:transparent;
+	position:relative;	
+}
+form ul:after,form li:after, form li div:after{
+	content:"."; 
+	display:block;
+	height:0; 
+	clear:both; 
+	visibility:hidden;
+}
+
+form li div{
+	margin:0;
+	padding:0;
+	color:#444;
+}
+form li span {
+	margin:0 .3em 0 0;
+	padding:0;
+	float:left;
+	color:#444;
+}
+
+/* ----- Choices Field Structures ----- */
+
+form li div span{
+	margin:0;
+	display:block;
+	width:100%;	
+}
+	
+li.item4 div span{
+	width:30%;
+	margin:0 5px 0 0;
+}
+
+/* ----- FLOATS ----- */
+
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+
+/* ----- LABELS ----- */
+
+label {
+	font-size:80%;
+	font-weight:bold;
+	color:#222;
+	line-height:150%;
+	margin:0;
+	padding:0 0 3px 0;
+	border:none;
+	display:block;
+	white-space: normal;
+	width:100%;
+}
+
+/* ----- REQUIRED ----- */
+
+form span.req{
+	display:inline;
+	float:none;
+	color:red !important;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+}
+
+/* ----- FIELDS ----- */
+
+input.text, select.select{
+	font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
+	font-size:100%;
+	color:#333;
+	margin:0;
+	padding:2px 0;
+}
+input.text {
+	border-top:1px solid #7c7c7c;
+	border-left:1px solid #c3c3c3;
+	border-right:1px solid #c3c3c3;
+	border-bottom:1px solid #ddd;
+	background:#fff;
+}
+
+select {
+	padding:1px 0 0 0;
+	width:100%;
+}
+
+input.checkbox {
+	display:block;
+	margin:4px 0 0 0;
+	padding:0;
+	width:13px;
+	height:13px;
+}
+
+.center, 
+form li span.center input.text, form li span.center label,
+form li.name span label,
+form li.date input.text, form li.date span label, 
+form li.phone input.text, form li.phone span label,
+form li.time input.text, form li.time span label{
+	text-align:center;
+}
+form li.time select.select{
+	margin-left:5px;
+}
+form li.price .right{
+	text-align:right;
+}
+
+form li.button div{
+	text-align: right;
+}
+
+input.btSubmit{
+	padding: 0 7px;
+	width: auto;
+	overflow: visible;
+}
+/* ----- ERRORS ----- */
+
+#errorLi{
+	width:99%;
+	margin:15px auto 15px auto;
+	background:#fff !important;
+	border:1px solid red;
+	text-align:center;
+	padding:1em 0 1em 0;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border-radius:20px;
+}
+#errorMsgLbl{
+	margin:0 0 5px 0;
+	padding:0;
+	font-size:125%;
+	color:#DF0000 !important;
+}
+#errorMsg{
+	margin:0 0 2px 0;
+	color:#000 !important;
+	font-size:100%;
+}
+#errorMsg strong{
+	padding:2px 8px;
+	background-color: #FFDFDF !important;
+	color:red !important;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+form li.error{
+	display:block !important;
+	background-color: #FFDFDF !important;
+	margin-bottom:3px !important;
+}
+form li label.error, form li input.error{
+	color:#DF0000 !important;
+	font-weight:bold !important;
+}
+form li input.error{
+	background:#fff !important;
+	border:2px solid #DF0000 !important;
+}
+
+
+form li.error label, form li.error span.symbol{
+	color:#000 !important;
+}
+form li.error .desc{
+	color:#DF0000 !important;
+}
+form p.error{
+	display:none;
+	margin:0 !important;
+	padding:7px 0 0 0 !important;
+	line-height:10px !important;
+	font-weight:bold;
+	font-size:11px;
+	color:#DF0000 !important;
+	clear:both;
+}
+form li.error p.error{
+	display:block;
+}
+form li.complex p.error{
+	padding:0 0 9px 0 !important;
+}
