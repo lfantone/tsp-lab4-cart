@@ -20,7 +20,7 @@
 			$this->form_validation->set_rules('categoria', 'Categoria', 'required');
 			
 			if ($this->form_validation->run() == FALSE)	{
-				$this->load->view('alta_producto');
+				$this->index();
 			} else {
 				$this->load->view('confirmacion_producto');
 				//$this->altamodel->insert_productos($this->post->input('descripcion'), $this->post->input('precio'), $this->post->input('stock'), $this->post->input('id_categoria'), $this->post->input('id_proveedor'),$this->post->input('oferta') );
