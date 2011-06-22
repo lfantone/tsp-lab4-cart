@@ -16,34 +16,34 @@
 			<li class="item1">
 				<?php echo form_label('Descripci&oacute;n', 'descripcion');?>
 				<div>
-					<?php echo form_input('descripcion', set_value('descripcion'), 'size="8" tabindex="1" maxlength="50"');?>
+					<?php echo form_input('descripcion', set_value('descripcion'), 'size="8" tabindex="1" maxlength="50"'); echo form_error('descripcion');?>
 				</div>
 			</li>			
 			<li class="item2">
 				<?php echo form_label('Precio', 'precio');?>
 				<div>
-					<?php echo form_input('precio', set_value('precio'), 'size="8" tabindex="2" maxlength="50"');?>
+					<?php echo form_input('precio', set_value('precio'), 'size="8" tabindex="2" maxlength="50"');echo form_error('precio');?>
 				</div>
 			</li>			
 			<li class="item3">
 				<?php echo form_label('Stock', 'stock');?>
 				<div>
-					<?php echo form_input('stock', set_value('Stock'), 'size="8" tabindex="3" maxlength="2"');?>
+					<?php echo form_input('stock', set_value('Stock'), 'size="8" tabindex="3" maxlength="2"');echo form_error('stock');?>
 				</div>
 			</li>			
 			<li class="item4">				
 				<div>
 					<span class="left">						
 						<?php echo form_label('Proveedor', 'proveedor');?>
-						<?php echo form_dropdown('proveedor', $proveedores, '', 'tabindex="5"');?>
+						<?php echo form_dropdown('proveedor', $proveedores, '', 'tabindex="5"');echo form_error('proveedor');?>
 					</span>
 					<span>						
 						<?php echo form_label('Categor&iacute;a', 'categoria');?>
-						<?php echo form_dropdown('categoria', $categorias, '', 'tabindex="6"'); ?>
+						<?php echo form_dropdown('categoria', $categorias, '', 'tabindex="6"');echo form_error('categoria');?>
 					</span>
 					<span class="right">
 						<?php echo form_label('Oferta', 'oferta');?>
-						<?php echo form_checkbox('oferta', '1', FALSE, 'tabindex="4"');?>
+						<?php echo form_checkbox('oferta', '1', FALSE, 'tabindex="4"');echo form_error('oferta');?>
 					</span>
 				</div>
 			</li>
