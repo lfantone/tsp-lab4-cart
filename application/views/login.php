@@ -1,36 +1,37 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Cart Login</title>
+	<link href="<? echo base_url()?>assets/css/login.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
-	
-	<?php echo form_open('login'); ?>
-
-	<div id="LoginUsuarios">
-	   <div class="fila">
-		  <div class="LoginUsuariosCabecera">E-mail:</div>
-		  <div class="LoginUsuariosDato"><?php echo form_input('email', set_value('email'), 'size="25"');?></div>
-		  <div class="LoginUsuariosError">
-		  <?php
-		  if(isset($error)){
-			 echo "<p>".$error."</p>";
-		  }
-		  echo form_error('email');
-		  ?>
-		  </div>
-	   </div>      
-	   <div class="fila">
-		  <div class="LoginUsuariosCabecera">Contrase&ntilde;a:</div>
-		  <div class="LoginUsuariosDato"><?php echo form_password('password', set_value('password'), 'size="25"');?></div>
-		  <div class="LoginUsuariosError"><?php echo form_error('password'); ?></div>
-	   </div>
-	   
-	   <div class="fila">
-		  <div class="LoginUsuariosCabecera"><?php echo form_submit('ingresar', 'Ingresar');?></div>
-		  <div class="LoginUsuariosDato"><?php echo anchor('controlregistro', 'Nuevo usuario?');?></div>
-	   </div>      
+	<div id="content">
+		<div id="login-box">
+			<?php echo form_open('login');?>
+			<h2>Login</h2><br />
+			<div id="login-box-name">
+				<?php echo form_label('Email: ', 'email');?>
+			</div>
+			<div id="login-box-field">
+				<?php echo form_input('email', set_value('email'), 'class="form-login "size="30" maxlength="2048"');?>
+				<?php echo form_error('email');?>
+			</div>
+			<div id="login-box-name">
+				<?php echo form_label('Contrase&ntilde;a: ', 'contrasenia');?>
+			</div>
+			<div id="login-box-field">
+				<?php echo form_password('password', set_value('password'), 'class="form-login" size="30" maxlength="2048"');?>
+				<?php echo form_error('password');?>
+			</div>
+			<br />
+			<span class="login-box-options">
+				<?php echo anchor('registro', 'Nuevo Usuario?', 'class="new_user"');?>
+			</span>
+			<br />
+			<br />
+			<?php echo form_input(array('type' => 'image', 'src' => base_url().'assets/img/login-btn.png', 'name' => 'submit', 'class' => "BtnLogin", 'width' => '103', 'height' => "42"));?>
+		</div>	
 	</div>
-	<?php echo form_close();?>
 </body>
 </html>
