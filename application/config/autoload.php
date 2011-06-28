@@ -53,7 +53,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 */
 
 
-$autoload['libraries'] = array('database','form_validation','encrypt', 'security');
+$autoload['libraries'] = array('database','form_validation','encrypt', 'security', 'cart');
 
 
 
@@ -66,7 +66,7 @@ $autoload['libraries'] = array('database','form_validation','encrypt', 'security
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('form', 'url', 'html');
+$autoload['helper'] = array('form', 'url', 'html', 'text');
 
 
 /*
