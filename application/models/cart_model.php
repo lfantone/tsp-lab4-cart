@@ -1,22 +1,29 @@
 <?php
 	class Cart_model extends CI_Model {
 		public function __construct() {
-			parent::__construct();
-			$this->load->database();
+			parent::__construct();			
 		}
 		
 		public function get_products() {
-			$query = $this->db->where('base_price >', '0');
-			$query = $this->db->order_by('collectable_name', 'ASC');
-			$query = $this->db->get('collectable', 20);
+			$this->db->where('precio >', '0');
+			$this->db->order_by('descripcion', 'ASC');
+			$query = $this->db->get('productos');
+			return $query->result_array();
+		}
+		
+		public function get_productos_categoria($cat) {
+			$this->db->where('precio >', '0');
+			$this->db->where('id_categoria', $cat);
+			$this->db->order_by('descripcion', 'ASC');
+			$query = $this->db->get('productos');
 			return $query->result_array();
 		}
 		
 		public function get_offers() {
-			$query = $this->db->where('base_price >', '0');
+			$this->db->where('precio >', '0');
 			//$query = $this->db->where('offer', '1');
-			$query = $this->db->order_by(alternator('collectable_name','id_collectable', 'base_price'), 'random');
-			$query = $this->db->get('collectable', 8);
+			$this->db->order_by(alternator('descripcion','id_producto', 'precio'), 'random');
+			$query = $this->db->get('productos', 8);
 			return $query->result_array();
 		}
 		// Falta definir la tabla para este tipo de insert.
@@ -33,8 +40,8 @@
 		}
 		
 		public function validate_add_cart_item($id, $qty) {
-			$this->db->where('id_collectable', $id);
-			$query = $this->db->get('collectable', 1);						
+			$this->db->where('id_producto', $id);
+			$query = $this->db->get('productos', 1);						
 			$row = $query->row();
 			if ($query->num_rows > 0) {
 				foreach ($this->cart->contents() as $items) {					
@@ -42,7 +49,7 @@
 						$data = array(
 									'rowid'=>$items['rowid'], 
 									'qty'=>$items['qty'] + $qty, 
-									'price'=> $this->quantity_price($row->base_price, $items['qty'] + $qty));
+									'price'=> $this->quantity_price($row->precio, $items['qty'] + $qty));
 						$this->cart->update($data);
 						return TRUE;												
 					}
@@ -50,8 +57,8 @@
 				$data = array(
 							'id' => $id,
 							'qty' => $qty,
-							'price' => $this->quantity_price($row->base_price, $qty),
-							'name' => $row->collectable_name);
+							'price' => $this->quantity_price($row->precio, $qty),
+							'name' => $row->descripcion);
 				$this->cart->insert($data);
 				return TRUE;								
 			} else {
@@ -81,17 +88,39 @@
 		}
 		
 		private function quantity_price_id($id, $qty) {
-			$this->db->where('id_collectable', $id);
-			$query = $this->db->get('collectable', 1);						
+			$this->db->where('id_producto', $id);
+			$query = $this->db->get('productos', 1);						
 			$row = $query->row();			
 			if ($query->num_rows > 0) {
 				if ($qty >= 5 AND $qty < 10) {
-					return $new_price = $row->base_price - $row->base_price * 0.10;
+					return $new_price = $row->precio - $row->precio * 0.10;
 				}
 				if ($qty >= 10) {
-					return $new_price = $row->base_price - $row->base_price * 0.25;				 
+					return $new_price = $row->precio - $row->precio * 0.25;				 
 				}
 			}				
-			return $row->base_price;
+			return $row->precio;
 		}
+	
+	public function get_categorias() {
+    	$this->db->select('id_categoria, nombre');
+    	$query = $this->db->get('categorias', 3);
+    	if ($query->num_rows() > 0) {
+    		return $this->rearrange_array($query->result_array());
+    	}
+    }
+    
+    private function rearrange_array($d, $data = array()) {    	  	
+    	foreach ($d as $row) {
+    			$values = array_values($row);
+    			if (count($values) === 2) {
+    				$key = $values[0];
+    				$val = $values[1];    				
+    				$data[$key] = $val;
+    			}   			
+    	}   	
+    	return $data;
+    }
+	
+	
 	}

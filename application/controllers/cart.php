@@ -3,17 +3,20 @@
 		
 		public function __construct() {
 			parent::__construct();
-			$this->load->model('cart_model');
-			$this->load->helper(array('url', 'form', 'text'));
-			$this->load->library('cart');
+			$this->load->model('cart_model');			
 		}
 		
 		public function index() {
 			$data['offers'] = $this->cart_model->get_offers();
 			$data['content_offers'] = 'offers';
-			$data['collectable'] = $this->cart_model->get_products();
+			$data['categoria'] = $this->cart_model->get_categorias();
+			$cat = $this->input->post('categoria');
+			if(isset($cat)) {
+				$data['collectable'] = $this->cart_model->get_productos_categoria($cat);	
+			} else {
+				$data['collectable'] = $this->cart_model->get_products();
+			}			
 			$data['content_collectable'] = 'collectable';
-			
 			$this->load->view('index', $data);
 			
 		}
