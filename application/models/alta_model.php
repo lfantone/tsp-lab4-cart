@@ -6,16 +6,16 @@ class Alta_model extends CI_Model {
     }  
     
     public function get_proveedores() {
-		$this->db->select('id_collectable, collectable_name');
-		$query = $this->db->get('collectable', 3);
+		$this->db->select('id_proveedor, razon_social');
+		$query = $this->db->get('proveedores');
     	if ($query->num_rows() > 0) {
     		return $this->rearrange_array($query->result_array());
     	}
     }
     
 	public function get_categorias() {
-    	$this->db->select('id_city, city_name');
-    	$query = $this->db->get('city', 3);
+    	$this->db->select('id_categoria, nombre');
+    	$query = $this->db->get('categorias', 3);
     	if ($query->num_rows() > 0) {
     		return $this->rearrange_array($query->result_array());
     	}
@@ -44,6 +44,27 @@ class Alta_model extends CI_Model {
 				'imagen'=>str_replace (' ','-',$descripcion));
         $this->db->insert('productos', $data);
     }
-}
 
+
+	public function insert_proveedor($razon_social, $telefono, $addr, $addr_no, $city) {
+			$domicilio = array(
+							'nombre_calle' => $addr, 
+							'numero_calle' => $addr_no, 
+							'localidad' => $city);
+										
+			$this->db->insert('domicilios', $domicilio);
+			
+			$this->db->order_by('id_domicilio', 'desc');
+			$query = $this->db->get('domicilios', 1);
+			$row = $query->row();
+						
+			$proveedor = array(
+						'razon_social' => $razon_social,
+						'telefono' => $telefono, 
+						'id_domicilio' => $row->id_domicilio);
+			$this->db->insert('proveedores', $proveedor);
+			
+			return TRUE;
+		}
+}	
 ?>
