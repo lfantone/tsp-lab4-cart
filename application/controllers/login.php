@@ -17,7 +17,7 @@ class Login extends CI_Controller {
         } else {
 			/* SETEO VALIDACIONES */
 			$this->form_validation->set_rules('email', 'e-mail', 'required|valid_email|max_length[50]');
-		    $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[5]|max_length[30]');
+		    $this->form_validation->set_rules('password', 'Contrase&ntilde;a', 'required|min_length[5]|max_length[30]');
 
 			/* SI NO PASA LAS VALIDACIONES */			
 			if(($this->form_validation->run() == FALSE)) {         

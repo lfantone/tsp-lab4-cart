@@ -16,7 +16,7 @@ class registro extends CI_Controller {
 	public function new_user() {
 		$this->form_validation->set_rules('firstname', 'Nombre', 'trim|required|min_length[2]|max_length[30]|alpha|xss_clean');
 		$this->form_validation->set_rules('lastname', 'Apellido', 'trim|required|min_length[2]|max_length[30]|alpha');
-		$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[30]|md5');
+		$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[30]');
 		$this->form_validation->set_rules('passconf', 'Confirme Contraseña', 'required|matches[password]');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|callback_username_check');
 		$this->form_validation->set_rules('address', 'Dirección', 'trim|required|min_length[2]|max_length[50]|alpha_numeric');
