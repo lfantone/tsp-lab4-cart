@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Cart Login</title>
-	<link href="<? echo base_url()?>assets/css/login.css" rel="stylesheet" type="text/css" />
+	<link href="http://127.0.0.1:8888/lfantone-tsp-lab4-cart-6f5e7cb/assets/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="content">
@@ -14,14 +14,17 @@
 				<?php echo form_label('Email: ', 'email');?>
 			</div>
 			<div id="login-box-field">
-				<?php echo form_input('email', set_value('email'), 'class="form-login "size="30" maxlength="2048"');?>
-				<?php echo form_error('email');?>
+				<?php echo form_input('email', set_value('email'), 'class="form-login "size="30"');?>
+				<?php if(isset($error))
+						{ echo "<p>".$error."</p>"; }  
+					  echo form_error('email');	  
+				?>
 			</div>
 			<div id="login-box-name">
 				<?php echo form_label('Contrase&ntilde;a: ', 'contrasenia');?>
 			</div>
 			<div id="login-box-field">
-				<?php echo form_password('password', set_value('password'), 'class="form-login" size="30" maxlength="2048"');?>
+				<?php echo form_password('password', set_value('password'), 'class="form-login" size="30"');?>
 				<?php echo form_error('password');?>
 			</div>
 			<br />
