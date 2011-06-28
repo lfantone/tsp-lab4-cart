@@ -10,7 +10,7 @@ div#content{
 	padding: 58px 76px 0 76px;
 	color: #ebebeb;
 	font: 12px Arial, Helvetica, sans-serif;
-	background: url(http://localhost/tsp-lab4-cart/assets/img/login-box-backg.png) no-repeat left top;
+	background: url(http://127.0.0.1:8888/lfantone-tsp-lab4-cart-6f5e7cb/assets/img/login-box-backg.png) no-repeat left top;
 }
 
 #login-box img {
