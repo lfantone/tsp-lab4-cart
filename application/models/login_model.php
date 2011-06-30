@@ -5,15 +5,27 @@ class Login_model extends CI_Model {
 	}
 	
 	function CheckUserAndPass($email,$password) { 
-		$query = $this->db->where('mail',$email);
-		$query = $this->db->where('password',$password);
+		$this->db->where('mail',$email);
+		$this->db->where('password',$password);
 		$query = $this->db->get('usuarios');
 		
-		if ($query->num_rows > 0) {
+		if ($query->num_rows() > 0) {
 			return TRUE;
-		} else {
-			return FALSE;
+		} 
+		return FALSE;		
+	}
+	
+	public function check_admin_account($mail, $pwd) {
+		$this->db->where('mail',$mail);
+		$this->db->where('password',$pwd);
+		$query = $this->db->get('usuarios', 1);
+		if ($query->num_rows() > 0) {
+			if ($query->row(7) == 1) {
+				return 1;
+			}
+			return 2;			
 		}
+		return 3; 
 	}
 }
 ?>
