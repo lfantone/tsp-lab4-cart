@@ -1,89 +1,72 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Nuevo Usuario</title>
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/structure.css" type="text/css" />
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/form.css" type="text/css" />
 </head>
-<style type="text/css">
-	#form1
-	{ text-align:left;}
-	#req
-	{ color: red;}
-</style>
-<body>
-	<div id="form1">
-	<table>	
-		<?php // echo validation_errors();?>
-		<?php echo form_open('registro/new_user'); ?>
-		
-		<tr>
-		<td>
-			Nombre: <?php echo form_input('firstname', set_value('firstname'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('firstname'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Apellido: <?php echo form_input('lastname', set_value('lastname'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('lastname'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Contrase&ntilde;a: <?php echo form_password('password', set_value('password'), 'size="50"')?> 
-			<label id="req">* <?php echo form_error('password'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Confirme su contrase&ntilde;a:	<?php echo form_password('passconf', set_value('passconf'), 'size="50"')?> 
-			<label id="req">* <?php echo form_error('passconf'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Direcci&oacute;n de e-mail: <?php echo form_input('email', set_value('email'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('email'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Direcci&oacute;n: <?php echo form_input('address', set_value('address'), 'size="50"');?>
-			<label id="req">* <?php echo form_error('address'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			N&uacute;mero:	<?php echo form_input('address_number', set_value('address_number'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('address_number'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			Localidad: <?php echo form_input('city', set_value('city'), 'size="50"');?> 
-			<label id="req">* <?php echo form_error('city'); ?> </label>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			<p id="req">* Campos requeridos</p>
-		</td>
-		</tr>
-		
-		<tr>
-		<td>
-			<div><?php echo form_submit('aceptar', 'Aceptar');?></div>
-		</td>
-		</tr>
-		
-		<?php echo form_close();?>	
-	</table>
-</div>
+<body id="public">
+	<div id="container">
+		<?php echo form_open('registro/new_user', 'class="form_new_producto"');?>		
+		<header id="header" class="info">
+			<h2>Nuevo Usuario</h2>
+		</header>
+		<ul>	
+			<li class="item1">
+				<?php echo form_label('Nombre', 'nombre');?>
+				<div>
+					<?php echo form_input('nombre', set_value('nombre'), 'tabindex="1" maxlength="50"'); echo form_error('nombre');?>
+				</div>
+			</li>			
+			<li class="item2">
+				<?php echo form_label('Apellido', 'apellido');?>
+				<div>
+					<?php echo form_input('apellido', set_value('apellido'), 'tabindex="2" maxlength="50"');echo form_error('apellido');?>
+				</div>
+			</li>			
+			<li class="item3">
+				<?php echo form_label('Contrase&ntilde;a', 'password');?>
+				<div>
+					<?php echo form_password('password', '', 'tabindex="3" maxlength="50"');echo form_error('password');?>
+				</div>
+			</li>			
+			<li class="item4">				
+				<?php echo form_label('Confirme su contrase&ntilde;a', 'passconf');?>
+				<div>
+					<?php echo form_password('passconf', '', 'tabindex="4" maxlength="50"'); echo form_error('passconf');?>
+				</div>
+			</li>
+			<li class="item5">				
+				<?php echo form_label('Direcci&oacute;n de e-mail', 'email');?>
+				<div>
+					<?php echo form_input('email', set_value('email'), 'tabindex="5" maxlength="50"'); echo form_error('email');?>
+				</div>
+			</li>
+			<li class="item6">				
+				<?php echo form_label('Direcci&oacute;n', 'direccion');?>
+				<div>
+					<?php echo form_input('direccion', set_value('direccion'), 'tabindex="6" maxlength="50"'); echo form_error('direccion');?>
+				</div>
+			</li>
+			<li class="item7">				
+				<?php echo form_label('N&uacute;mero', 'numero_calle');?>
+				<div>
+					<?php echo form_input('numero_calle', set_value('numero_calle'), 'tabindex="7" maxlength="50"'); echo form_error('numero_calle');?>
+				</div>
+			</li>
+			<li class="item8">				
+				<?php echo form_label('Localidad', 'localidad');?>
+				<div>
+					<?php echo form_input('localidad', set_value('localidad'), 'tabindex="8" maxlength="50"'); echo form_error('localidad');?>
+				</div>
+			</li>
+			<li class="button">
+				<div>
+					<?php echo form_submit('agregar', 'Agregar', 'class="btSubmit"');?>
+				</div>
+			</li>			
+		</ul>
+		<?php echo form_close();?>
+	</div>
 </body>
 </html>
