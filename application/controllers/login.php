@@ -6,7 +6,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');				
-		//$this->load->helper('security');
+		$this->load->helper('security');
 	}
 
    function index($idioma=null) {
@@ -17,7 +17,7 @@ class Login extends CI_Controller {
         } else {
 			/* SETEO VALIDACIONES */
 			$this->form_validation->set_rules('email', 'e-mail', 'required|valid_email|max_length[50]');
-		    $this->form_validation->set_rules('password', 'Contrase&ntilde;a', 'required|min_length[5]|max_length[30]');
+		    $this->form_validation->set_rules('password', 'Contrase&ntilde;a', 'required|min_length[5]|max_length[30]|MD5');
 
 			/* SI NO PASA LAS VALIDACIONES */			
 			if(($this->form_validation->run() == FALSE)) {         
@@ -26,13 +26,14 @@ class Login extends CI_Controller {
 			/* SI PASA LAS VALIDACIONES */
 			} else {     
 				$this->load->model('login_model');
-				$Valido = $this->login_model->CheckUserAndPass($mail,$this->encrypt->encode($this->input->post('password')));
+				$Valido = $this->login_model->CheckUserAndPass($mail,$this->input->post('password'));
 				
 				if($Valido) {
-				   redirect('cart');
+					$this->load->library('session');
+					redirect('cart');
 				} else {
-				   $data['error']="E-mail o password incorrecto, por favor vuelva a intentar";	
-				   $this->load->view('login',$data);   //   Lo regresamos a la pantalla de login y pasamos como parámetro el mensaje de error a presentar en pantalla
+					$data['error']="E-mail o password incorrecto, por favor vuelva a intentar";	
+					$this->load->view('login',$data);   //   Lo regresamos a la pantalla de login y pasamos como parámetro el mensaje de error a presentar en pantalla
 				}
 			}
 		}
