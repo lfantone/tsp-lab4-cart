@@ -33,7 +33,7 @@ class Alta_model extends CI_Model {
     	return $data;
     }
     
-   	public function insert_productos($descripcion,$precio,$stock,$id_categoria,$id_proveedor,$oferta) {
+	public function insert_productos($descripcion,$precio,$stock,$id_categoria,$id_proveedor,$oferta) {
         $data = array(
 				'descripcion' => $descripcion,
 				'precio' => $precio,
@@ -42,29 +42,30 @@ class Alta_model extends CI_Model {
 				'id_proveedor' => $id_proveedor,
 				'id_categoria' => $id_categoria,
 				'imagen'=>str_replace (' ','-',$descripcion));
+		//VERIFICACION DE INSERT Y $DATA EXISTE ?
         $this->db->insert('productos', $data);
     }
-
-
-	public function insert_proveedor($razon_social, $telefono, $addr, $addr_no, $city) {
-			$domicilio = array(
-							'nombre_calle' => $addr, 
-							'numero_calle' => $addr_no, 
-							'localidad' => $city);
-										
-			$this->db->insert('domicilios', $domicilio);
-			
-			$this->db->order_by('id_domicilio', 'desc');
-			$query = $this->db->get('domicilios', 1);
-			$row = $query->row();
-						
-			$proveedor = array(
-						'razon_social' => $razon_social,
-						'telefono' => $telefono, 
-						'id_domicilio' => $row->id_domicilio);
-			$this->db->insert('proveedores', $proveedor);
-			
-			return TRUE;
-		}
+	
+    public function insert_categoria($nombre) {
+        $data = array('nombre' => $nombre);
+        $this->db->insert('categorias', $data);
+    }
+	
+	public function insert_proveedor($razon_social,$telefono,$nombre_calle, $numero_calle,$localidad) {
+        $domicilio = array(
+				'nombre_calle' => $nombre_calle,
+				'numero_calle' => $numero_calle,
+				'localidad' => $localidad);
+		$this->db->insert('domicilios', $domicilio);
+		$this->db->order_by('id_domicilio', 'desc');
+		$query = $this->db->get('domicilios', 1);
+		$row = $query->row();
+		
+		$proveedor = array(
+				'razon_social' => $razon_social,
+				'telefono' => $telefono,
+				'id_domicilio' => $row->id_domicilio);
+		$this->db->insert('proveedores', $proveedor);		
+	}
 }	
 ?>
