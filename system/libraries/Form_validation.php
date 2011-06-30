@@ -1076,7 +1076,7 @@ class CI_Form_validation {
 	 */
 	function alpha($str)
 	{
-		return ( ! preg_match("/^([a-z])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-záÁéÉíÍóÓúÚ])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -1090,7 +1090,7 @@ class CI_Form_validation {
 	 */
 	function alpha_numeric($str)
 	{
-		return ( ! preg_match("/^([a-z0-9])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-z0-9áÁéÉíÍóÓúÚ])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -1104,7 +1104,7 @@ class CI_Form_validation {
 	 */
 	function alpha_numeric_spaces($str)
 	{
-		return ( ! preg_match("/^([a-z0-9' '])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-z0-9' 'áÁéÉíÍóÓúÚ])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------
