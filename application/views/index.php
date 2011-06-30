@@ -3,11 +3,13 @@
 <head>  
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
 	<title>Carrito de compra</title>  
- 	<link href="<?=base_url()?>assets/css/core.css" media="screen" rel="stylesheet" type="text/css" />  
+ 	<link href="<?=base_url()?>assets/css/core.css" rel="stylesheet" type="text/css" />
+ 	<link href="<?=base_url()?>assets/css/banner.css" rel="stylesheet"  type="text/css" />  
 	<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>/assets/js/core.js"></script>  
 </head>  
 <body>
+	<?php $this->view('banner.php')?>
 	<div id="general">
 		<table>
 			<tr>		
