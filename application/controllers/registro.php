@@ -7,7 +7,7 @@
 		}
 		
 		public function index() {		
-			$this->load->view('registrousuario');	
+			$this->load->view('registro_usuario');	
 		}
 		
 		public function new_user() {
@@ -17,14 +17,14 @@
 			$this->form_validation->set_rules('passconf', 'Confirme su contrase&ntilde;a', 'required|matches[password]|md5');
 			$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email|max_length[50]|callback_username_check');
 			$this->form_validation->set_rules('direccion', 'Direcci&oacute;n', 'trim|required|min_length[2]|max_length[50]|alpha_numeric_spaces');
-			$this->form_validation->set_rules('numero_calle', 'N&uacute;mero de Direcci&oacute;n', 'trim|required|min_length[1]|max_length[10]|is_natural_no_zero');
+			$this->form_validation->set_rules('numero_calle', 'N&uacute;mero de calle', 'trim|required|min_length[1]|max_length[10]|is_natural_no_zero');
 			$this->form_validation->set_rules('localidad', 'Localidad', 'trim|required|min_length[2]|max_length[50]|alpha_numeric_spaces');
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view('registrousuario');
+				$this->load->view('registro_usuario');
 			} else {			/* VALIDACIONES */
-				if ($this->registro_model->insert_newUser($this->input->post('nombre'), $this->input->post('apellido'), $this->input->post('password'), $this->input->post('email'), $this->input->post('direccion'), $this->input->post('calle_numero'), $this->input->post('localidad'))) {
-					$this->load->view('registrocorrecto');
+				if ($this->registro_model->insert_newUser($this->input->post('nombre'), $this->input->post('apellido'), $this->input->post('password'), $this->input->post('email'), $this->input->post('direccion'), $this->input->post('numero_calle'), $this->input->post('localidad'))) {
+					$this->load->view('registro_correcto');
 					$this->load->library('session');
 				} else {
 					$this->load->view('registroErr');
