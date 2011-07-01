@@ -9,18 +9,10 @@
             }
 		}
 		
-		public function index() {			
-			$data['categoria'] = $this->carro_model->get_categorias();			
-			if($this->input->post('categoria')) {
-				$data['collectable'] = $this->carro_model->get_productos_categoria($this->input->post('categoria'));
-				//ERROR NO HAY PRODUCTOS DE DICHA CATEGORIA !				
-				$this->load->view('test', $data);	
-			} else {
-				$data['collectable'] = $this->carro_model->get_productos();
-			}			
-			$data['content_collectable'] = 'collectable';
-			$this->load->view('carro', $data);
-			
+		public function index() {
+			$data['t'] = $this->session->userdata('cart_contents');
+			$data['te'] = $this->carro_model->validar_compra();			
+			$this->load->view('test', $data);			
 		}
 		
 		public function agregar_producto() {
@@ -28,8 +20,7 @@
 				if($this->input->post('ajax') != '1') {
 					redirect('carro'); 
 				} else {  
-	           		echo 'true';
-					//$this->cart_model->insertProducts($this->session->userdata('session_id'));
+	           		echo 'true';					
 				}				  
 	  		}
 		}
@@ -50,6 +41,18 @@
 		public function vaciar_carro() {
 			$this->cart->destroy();
 			redirect('carro');
-		}		
+		}
+
+		public function comprar_carro() {
+			$info = $this->carro_model->validar_compra();
+			if(! isset($info['error'])) {
+				$this->carro_model->insert_carro();
+				$data['info'] = 'Gracias por su compra.';
+			} else {
+				unset($info['error']);
+				$data['info'] = $info; 
+			}
+			$this->load->view('carro', $data); 
+		}
 	}
 	

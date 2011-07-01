@@ -31,9 +31,8 @@
 				return $query->result_array();	
 			} 
 			return 1; 
-		}
-				
-		// Falta definir la tabla para este tipo de insert.
+		}				
+		
 		public function insert_productos($userid) {
 			foreach ($this->cart->contents() as $items) {
 				$data = array(
@@ -42,7 +41,7 @@
 							'quantity' => $items['qty'],
 							'id_collectable' => $items['id'],
 							'userid' => $userid);
-				$this->db->insert('product_sale', $data);
+				$this->db->insert('carritos_productos', $data);
 			}
 		}
 		
@@ -84,6 +83,25 @@
 			}
 		}
 		
+		public function validar_compra() {
+			foreach ($this->cart->contents() as $item) {
+				$this->db->select('stock');
+				$this->db->where('id_producto', $item['id']);
+				$query = $this->db->get('productos', 1);
+				if ($query->num_rows() > 0) {
+					if ($query->row()->stock > $item['qty'] ) {
+						$data = array('stock' => $query->row()->stock - $item['qty']);
+						$this->db->where('id_producto', $item['id']);
+						$this->db->update('productos', $data);						
+					} else {
+						$i['error'] = 1;
+						$i[$item['name']] = 'Stock insuficiente de '.$item['name']; 
+					}										
+				}				
+			}
+			return $i;
+		}
+		
 		private function precio_cantidad($base_price, $qty) {			
 			if ($qty >= 5 AND $qty < 10) {
 				return $new_price = $base_price - $base_price * 0.10;
@@ -113,7 +131,7 @@
     	$this->db->select('id_categoria, nombre');
     	$query = $this->db->get('categorias', 3);
     	if ($query->num_rows() > 0) {
-    		return $this->rearrange_array($query->result_array());
+    		return $this->rearrange_array_default($query->result_array());
     	}
     }
     
@@ -126,6 +144,19 @@
     				$data[$key] = $val;
     			}   			
     	}   	
+    	return $data;
+    }
+    
+	 private function rearrange_array_default($d, $data = array()) {    	  	
+    	foreach ($d as $row) {
+    			$values = array_values($row);
+    			if (count($values) === 2) {
+    				$key = $values[0];
+    				$val = $values[1];    				
+    				$data[$key] = $val;
+    			}   			
+    	}
+    	$data['all'] = 'Mostrar todos';   	
     	return $data;
     }
 	
