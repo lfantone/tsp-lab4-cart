@@ -15,24 +15,28 @@
 	<div id="container">
 		<div id="header" class="info">
 			<h2>Productos en ofertas !</h2>
-		</div>		
-		<ul class="ofertas">
-			<?php foreach ($ofertas as $o) {?>
-			<li>    		
-				<h3><?php echo $o['descripcion'];?></h3>
-			    <img src="<?=base_url()?>assets/img/Bate.png" alt="<?php echo $o['imagen'];?>" width="72" height="72"/>
-			    <small>$ <?php echo $o['precio'];?></small>
-			    <?php echo form_open('carro/agregar_producto');?>
-			    <fieldset>
-			    	<?php echo form_label('Cantidad:', 'cantidad');?>
-			    	<?php echo form_input('cantidad', '1', 'maxlength="2"');?>    				
-			    	<?php echo form_hidden('id_producto', $o['id_producto']);?>
-			    	<?php echo form_submit('add', 'Agregar');?>
-			    </fieldset>
-			    		<?php echo form_close();?>
-			</li>
-			<?php }?>
-		</ul>
+		</div>
+		<?php if(!isset($error)) {?>		
+			<ul class="ofertas">			
+				<?php foreach ($ofertas as $o) {?>
+				<li>    		
+					<h3><?php echo $o['descripcion'];?></h3>
+				    <img src="<?=base_url()?>assets/img/Bate.png" alt="<?php echo $o['imagen'];?>" width="72" height="72"/>
+				    <small>$ <?php echo $o['precio'];?></small>
+				    <?php echo form_open('carro/agregar_producto');?>
+				    <fieldset>
+				    	<?php echo form_label('Cantidad:', 'cantidad');?>
+				    	<?php echo form_input('cantidad', '1', 'maxlength="2"');?>    				
+				    	<?php echo form_hidden('id_producto', $o['id_producto']);?>
+				    	<?php echo form_submit('add', 'Agregar');?>
+				    </fieldset>
+				    <?php echo form_close();?>
+				</li>
+				<?php }?>
+			</ul>
+		<?php } else {
+			echo "<p>".$error."</p>";
+		}?>
 		<div class="carrito_lista">
 			<h3>Tu carrito :</h3>
 			<div id="carrito_contenido">

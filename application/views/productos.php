@@ -21,37 +21,41 @@
 			<?php echo form_dropdown('categoria', $categoria);?>
 			<?php echo form_submit('ok', 'Ok!');?>
 			<?php echo form_close();?>
-			<?php if(isset($error))	{ echo "<p>".$error."</p>"; } ?>
+			<?php if(isset($error_cat))	{ echo "<p>".$error."</p>"; } ?>
 		</div>
-		<table width="100%" cellpadding="0" cellspacing="0" class="productos_lista">  
-		   	<thead>  
-		       	<tr>  
-		       		<td>Nombre</td>  
-		      		<td>Precio</td>  
-		      		<td>+5</td>
-		      		<td>+10</td>
-		      		<td>Stock disponible</td>	
-		       		<td>Cantidad</td>
-		       		<td></td>        		      		  
-		       	</tr>  
-		   	</thead>  
-		   	<tbody>		   		
-			   	<?php foreach ($productos as $p) {?>
-					<tr <?php if(alternator('0', '1')) { echo 'class="alt"'; }?>>
-						<td><?php echo character_limiter($p['descripcion'], 10, '')?></td>
-					    <td><?php echo $p['precio']?></td>
-					    <td><?php echo $p['precio']-$p['precio']*0.10?></td>
-					    <td><?php echo $p['precio']-$p['precio']*0.25?></td>
-					    <td><?php echo $p['stock'];?></td>
-					    <td><?php echo form_open('carro/agregar_producto');
-			   					  echo form_input('cantidad', '1', 'maxlength="2"');	  	  
-					    		  echo form_hidden('id_producto', $p['id_producto']);?></td>		  
-					    <td><?php echo form_submit('add', 'Agregar');?></td> 		    		
-				   			<?php echo form_close();?>	   			
-				    </tr>  					
-				<?php } ?>
-		   	</tbody>
-		</table>
+		<?php if(!isset($error_pro)) {?>
+			<table width="100%" cellpadding="0" cellspacing="0" class="productos_lista">  
+			   	<thead>  
+			       	<tr>  
+			       		<td>Nombre</td>  
+			      		<td>Precio</td>  
+			      		<td>+5</td>
+			      		<td>+10</td>
+			      		<td>Stock disponible</td>	
+			       		<td>Cantidad</td>
+			       		<td></td>        		      		  
+			       	</tr>  
+			   	</thead>  
+			   	<tbody>		   		
+				   	<?php foreach ($productos as $p) {?>
+						<tr <?php if(alternator('0', '1')) { echo 'class="alt"'; }?>>
+							<td><?php echo character_limiter($p['descripcion'], 10, '')?></td>
+						    <td><?php echo $p['precio']?></td>
+						    <td><?php echo $p['precio']-$p['precio']*0.10?></td>
+						    <td><?php echo $p['precio']-$p['precio']*0.25?></td>
+						    <td><?php echo $p['stock'];?></td>
+						    <td><?php echo form_open('carro/agregar_producto');
+				   					  echo form_input('cantidad', '1', 'maxlength="2"');	  	  
+						    		  echo form_hidden('id_producto', $p['id_producto']);?></td>		  
+						    <td><?php echo form_submit('add', 'Agregar');?></td> 		    		
+					   			<?php echo form_close();?>	   			
+					    </tr>  					
+					<?php } ?>
+			   	</tbody>
+			</table>
+		<?php } else {
+			echo "<p>".$error."</p>";
+		}?>
 		<div class="carrito_lista">
 			<h3>Tu carrito :</h3>
 			<div id="carrito_contenido">

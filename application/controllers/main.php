@@ -9,7 +9,11 @@
 		}
 		
 		public function index(){
-			$data['ofertas'] = $this->carro_model->get_ofertas();
+			 if ($this->carro_model->get_ofertas() == 1) {
+			 	$data['error'] = 'No hay ofertas en este momento.';					
+			 } else {
+			 	$data['ofertas'] = $this->carro_model->get_ofertas();
+			 }			 
 			$this->load->view('ofertas', $data);			
 		}		
 		

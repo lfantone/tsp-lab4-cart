@@ -10,12 +10,17 @@
 			if($this->input->post('categoria')) {
 				$data['productos'] = $this->carro_model->get_productos_categoria($this->input->post('categoria'));
 				if ($data['productos'] == 1) {
-					$data['error'] = 'No hay productos registrados en esa categor&iacute;a';
+					if(!$this->input->post('categoria') == 'all') {
+						$data['error_cat'] = 'No hay productos registrados en esa categor&iacute;a';	
+					}					
 					$data['productos'] = $this->carro_model->get_productos();
 				}					
 			} else {
 				$data['productos'] = $this->carro_model->get_productos();
-			}			
+			}
+			if($data['productos'] == 1)	{
+				$data['error_pro'] = 'No hay productos registrados.';
+			}		
 			$this->load->view('productos', $data);
 		}
 		
