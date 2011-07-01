@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
 <html>
 <head>
 	<title>Nuevo Usuario</title>
@@ -8,9 +8,9 @@
 <body id="public">
 	<div id="container">
 		<?php echo form_open('registro/new_user', 'class="form_new_producto"');?>		
-		<header id="header" class="info">
+		<div id="header" class="info">
 			<h2>Nuevo Usuario</h2>
-		</header>
+		</div>
 		<ul>	
 			<li class="item1">
 				<?php echo form_label('Nombre', 'nombre');?>

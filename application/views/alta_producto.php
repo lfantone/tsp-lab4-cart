@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html>
 <head>
 	<title>Nuevo Producto</title>
@@ -10,9 +10,9 @@
 	<?php $this->view('banner_admin.php')?>
 	<div id="container">
 		<?php echo form_open('alta/new_producto', 'class="form_new_producto"');?>		
-		<header id="header" class="info">
+		<div id="header" class="info">
 			<h2>Agregar nuevo producto</h2>
-		</header>
+		</div>
 		<ul>	
 			<li class="item1">
 				<?php echo form_label('Descripci&oacute;n', 'descripcion');?>
