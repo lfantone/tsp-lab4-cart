@@ -30,13 +30,9 @@
 			</div>			
 			<?php echo form_input(array('type' => 'image', 'src' => base_url().'assets/img/login-btn.png', 'name' => 'submit', 'class' => "BtnLogin"));?>
 			<?php echo form_close();?>
-			<br />			
-			<br />
-			<br />
 			<span class="login-box-options">
 				<?php echo anchor('registro', 'Nuevo Usuario?', 'class="new_user"');?>
-			</span>
-			<br />
+			</span>			
 			<span class="login-box-options">
 				<a id="JQpopup" >CPanel</a>
 			</span>

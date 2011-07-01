@@ -69,7 +69,7 @@ div#login-box-field {
 
 a.new_user {
 	position: fixed;
-    right: 59%;
+    right: 58%;
     text-align: left;
     top: 57%
 }
@@ -85,7 +85,7 @@ div#contactArea form div p {
 	font-size:70%;
 	padding-right:10px;
 	color:#FF0000;
-	margin-top: -8%;	
+	margin-top: -15%;	
 }
 
 .BtnLogin {
@@ -96,7 +96,7 @@ div#contactArea form div p {
 
 #JQpopup {
 	position: fixed;
-    right: 57%;
+    right: 55%;
     top: 57%;
 }
 
@@ -117,8 +117,8 @@ backgroundPopup {
 	display:none;  
 	position:fixed;  
 	_position:absolute; /* hack for internet explorer 6*/  
-	height: 20%;  
-	width: 15%;  
+	height: 170px;  
+	width: 215px;  
 	background:#FFFFFF;  
 	border:2px solid #cecece;  
 	z-index:2;  
