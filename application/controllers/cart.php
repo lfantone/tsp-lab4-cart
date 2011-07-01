@@ -3,7 +3,10 @@
 		
 		public function __construct() {
 			parent::__construct();
-			$this->load->model('cart_model');			
+			$this->load->model('cart_model');
+			
+                if (!$this->session->userdata('e-mail'))
+				redirect('login');
 		}
 		
 		public function index() {
