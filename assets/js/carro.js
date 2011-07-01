@@ -38,14 +38,14 @@ $(document).ready(function() {
 			alert("Cantidad inválida!");
 		}
 			return false;
-    }); 
-
-	$(".vaciar").live("click", function() {
+    });
+	
+	/*$(".vaciar").live("click", function() {
 		$.get(link + "carro/vaciar_carro", function() {
 			$.get(link + "carro/vaciar_carro", function(cart){
 				$("#carrito_contenido").html(cart);  
 	        });  
 	    });  
 	    return false;  
-	}); 
+	});*/
 });
