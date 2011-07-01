@@ -1,17 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Cart Login</title>
 	<link href="http://localhost/tsp-lab4-cart/assets/css/login.css" rel="stylesheet" type="text/css" />
-	<script src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js" type="text/javascript"></script>  
+	<script type="text/javascript" src="<?=base_url()?>/assets/js/jquery-1.6.1.min.js"></script>  
     <script src="<?=base_url()?>/assets/js/popup.js" type="text/javascript"></script> 
 </head>
 <body>
 	<div id="content">
 		<div id="login-box">
 			<?php echo form_open('login/user');?>
-			<h2>LOGIN</h2><br />
+			<h2>Project iCart</h2><br />
 			<div id="login-box-name">
 				<?php echo form_label('Email: ', 'email');?>
 			</div>
@@ -28,7 +28,7 @@
 			<div id="login-box-field">
 				<?php echo form_password('password', '', 'class="form-login"'); echo form_error('password');?>
 			</div>			
-			<?php echo form_input(array('type' => 'image', 'src' => base_url().'assets/img/login-btn.png', 'name' => 'submit', 'class' => "BtnLogin", 'width' => '103', 'height' => "42"));?>
+			<?php echo form_input(array('type' => 'image', 'src' => base_url().'assets/img/login-btn.png', 'name' => 'submit', 'class' => "BtnLogin"));?>
 			<?php echo form_close();?>
 			<br />			
 			<br />
@@ -38,7 +38,7 @@
 			</span>
 			<br />
 			<span class="login-box-options">
-				<a id="JQpopup" class="new_user">CPanel</a>
+				<a id="JQpopup" >CPanel</a>
 			</span>
 		</div>	
 	</div>
