@@ -22,6 +22,7 @@
 				$Valido = $this->login_model->CheckUserAndPass($this->input->post('email'),$this->input->post('password'));				
 				if($Valido) {
 					$this->load->library('session');
+                                        $this->session->set_userdata('e-mail', $this->input->post('email'));
 					redirect('cart');
 				} else {
 					$data['error']="Email o contrase&ntilde;a incorrecto, por favor vuelva a intentar";	
@@ -39,6 +40,8 @@
 				$v = $this->login_model->check_admin_account($this->input->post('email-cp'),$this->input->post('password-cp'));			
 				if($v == 1) {
 					$this->load->library('session');
+                                        $this->session->set_userdata('e-mail', $this->input->post('email-cp'));
+					$this->session->set_userdata('esadmin', true);
 					redirect('cpanel');				
 				}
 				if ($v == 2) {
