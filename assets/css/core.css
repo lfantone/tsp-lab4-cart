@@ -1,10 +1,5 @@
 @CHARSET "UTF-8";
 
-body{
-	font-family: "Lucida Sans";
-	font-size: 12px;
-}
-
 #general{
 	width: 1024px;
 }
@@ -17,14 +12,14 @@ ul.ofertas{
 }
 
 	ul.ofertas li{
-		background: #eeeeee;
-		border: 1px solid #d3d3d3;
+		background: #ffffff;
+		border: 3px solid #D3D3D3;
 		padding: 5px;
-		width: 100px;
-		text-align: center;
-		float: left;
+		width: 122px;
+		text-align: center;		
 		margin-right: 5px;
 		margin-bottom: 5px;
+		float: left;
 	}
 
 	ul.ofertas h3{

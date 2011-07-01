@@ -33,6 +33,12 @@
 
 /* ----- Field Structure ----- */
 
+body#public div#container div{
+	margin:1px;
+	padding:4px;
+	list-style-type:none;
+}
+
 form ul{
 	margin:1px;
 	padding:4px;

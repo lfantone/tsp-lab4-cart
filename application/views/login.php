@@ -47,18 +47,18 @@
 		<h1>Control Panel - Login</h1> 
 		<div id="contactArea">
 			<?php echo form_open('login/admin');?> 
-			<span class="login-cp-name"><?php echo form_label('Email: ', 'email-cp');?></span>
+			<span class="login-cp-name"><?php echo form_label('Email: ', 'emailcp');?></span>
 			<div>
-				<?php echo form_input('email-cp', set_value('email-cp'), 'class="form-cp"');?>
+				<?php echo form_input('emailcp', set_value('emailcp'), 'class="form-cp"');?>
 				<?php if(isset($errorcp))
 						{ echo "<p>".$errorcp."</p>"; }  
-					  echo form_error('email-cp');	  
+					  echo form_error('emailcp');	  
 				?>
 			</div>
-			<span class="login-cp-name"><?php echo form_label('Contrase&ntilde;a: ', 'password-cp');?></span>
+			<span class="login-cp-name"><?php echo form_label('Contrase&ntilde;a: ', 'passwordcp');?></span>
 			<div>
-				<?php echo form_password('password-cp', '', 'class="form-cp"');?>
-				<?php echo form_error('password-cp');?>
+				<?php echo form_password('passwordcp', '', 'class="form-cp"');?>
+				<?php echo form_error('passwordcp');?>
 			</div>
 			<span id="submit-cp">			
 				<?php echo form_submit('entrar', 'Entrar', 'class="submit-cp"');?>
