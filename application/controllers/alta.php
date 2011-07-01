@@ -2,10 +2,10 @@
 	class Alta extends CI_Controller {
 		public function __construct() {
 			parent::__construct();
-			$this->load->model('alta_model');
-                       
-                        if (!$this->session->userdata('e-mail') || !$this->session->userdata('esadmin'))
-				redirect('login');
+			$this->load->model('alta_model');                       
+			if(!$this->session->userdata('e-mail') || !$this->session->userdata('esadmin')) {
+				redirect('login');	
+			}
 		}
 		
 		public function index() {
