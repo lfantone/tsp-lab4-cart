@@ -13,6 +13,7 @@
 		<div id="header" class="info">
 			<h2>Agregar Nueva Categor&iacute;a</h2>
 		</div>
+		<?php if(isset($error)){ echo $error; }?>
 		<ul>	
 			<li class="item1">
 				<?php echo form_label('Nombre de Categor&iacute;a', 'nombre');?>

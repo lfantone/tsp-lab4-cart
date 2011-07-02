@@ -13,6 +13,7 @@
 		<div id="header" class="info">
 			<h2>Agregar Nuevo Proveedor</h2>
 		</div>
+		<?php if(isset($error)){ echo $error; }?>
 		<ul>	
 			<li class="item1">
 				<?php echo form_label('Raz&oacute;n Social', 'razon_social');?>

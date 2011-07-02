@@ -15,7 +15,7 @@ class Alta_model extends CI_Model {
     
 	public function get_categorias() {
     	$this->db->select('id_categoria, nombre');
-    	$query = $this->db->get('categorias', 3);
+    	$query = $this->db->get('categorias');
     	if ($query->num_rows() > 0) {
     		return $this->rearrange_array($query->result_array());
     	}
@@ -34,6 +34,11 @@ class Alta_model extends CI_Model {
     }
     
 	public function insert_productos($descripcion,$precio,$stock,$id_categoria,$id_proveedor,$oferta) {
+        $this->db->where('descripcion', $descripcion);
+        $query = $this->db->get('productos');
+        if($query->num_rows() > 0) {
+        	return false;
+        }
         $data = array(
 				'descripcion' => $descripcion,
 				'precio' => $precio,
@@ -42,17 +47,27 @@ class Alta_model extends CI_Model {
 				'id_proveedor' => $id_proveedor,
 				'id_categoria' => $id_categoria,
 				'imagen'=>str_replace (' ','-',$descripcion));
-		//VERIFICACION DE INSERT Y $DATA EXISTE ?
         $this->db->insert('productos', $data);
     }
 	
     public function insert_categoria($nombre) {
+    	$this->db->where('nombre', $nombre);
+        $query = $this->db->get('categorias');
+        if($query->num_rows() > 0) {
+        	return FALSE;
+        }
         $data = array('nombre' => $nombre);
         $this->db->insert('categorias', $data);
+    	return TRUE;
     }
 	
 	public function insert_proveedor($razon_social,$telefono,$nombre_calle, $numero_calle,$localidad) {
-        $domicilio = array(
+		$this->db->where('razon_social', $razon_social);
+        $query = $this->db->get('proveedores');
+        if($query->num_rows() > 0) {
+        		return FALSE;
+        	}
+		$domicilio = array(
 				'nombre_calle' => $nombre_calle,
 				'numero_calle' => $numero_calle,
 				'localidad' => $localidad);
@@ -66,6 +81,7 @@ class Alta_model extends CI_Model {
 				'telefono' => $telefono,
 				'id_domicilio' => $row->id_domicilio);
 		$this->db->insert('proveedores', $proveedor);		
+		return TRUE;
 	}
 }	
 ?>

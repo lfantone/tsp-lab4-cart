@@ -33,16 +33,28 @@
 			return 1; 
 		}				
 		
-		public function insert_productos($userid) {
+		public function insert_carro() {
 			foreach ($this->cart->contents() as $items) {
 				$data = array(
-							'collectable_name' => $items['name'],
-							'base_price' => $items['price'],
-							'quantity' => $items['qty'],
-							'id_collectable' => $items['id'],
-							'userid' => $userid);
+							'id_producto' => $items['id'],
+							'precio' => $items['price'],
+							'cantidad' => $items['qty']);
 				$this->db->insert('carritos_productos', $data);
 			}
+			$this->db->select('id_carrito');
+			$this->db->order_by('id_carrito', 'ASC');
+			$query = $this->db->get('carritos_productos');
+			$this->db->select('id_usuario');
+			$this->db->where('mail', $this->session->userdata('e-mail'));
+			$result = $this->db->get('usuarios');
+			if ($query->num_rows() > 0 && $result->num_rows() > 0) {
+				$data = array(
+						'id_carrito' => $query->row()->id_carrito,
+						'id_usuario' => $result->row()->id_usuario);
+				$this->db->insert('carritos', $data);
+				return 	TRUE;
+			}
+			return FALSE;
 		}
 		
 		public function validar_producto_carro($id, $qty) {
@@ -89,17 +101,18 @@
 				$this->db->where('id_producto', $item['id']);
 				$query = $this->db->get('productos', 1);
 				if ($query->num_rows() > 0) {
-					if ($query->row()->stock > $item['qty'] ) {
+					if ($query->row()->stock >= $item['qty'] ) {
 						$data = array('stock' => $query->row()->stock - $item['qty']);
 						$this->db->where('id_producto', $item['id']);
 						$this->db->update('productos', $data);						
+						$i['error'] = TRUE;
 					} else {
-						$i['error'] = 1;
+						$i['error'] = FALSE;
 						$i[$item['name']] = 'Stock insuficiente de '.$item['name']; 
 					}										
 				}				
 			}
-			return $i;
+			return $i;		
 		}
 		
 		private function precio_cantidad($base_price, $qty) {			
@@ -161,4 +174,4 @@
     }
 	
 	
-	}
+}

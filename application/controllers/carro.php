@@ -9,10 +9,8 @@
             }
 		}
 		
-		public function index() {
-			$data['t'] = $this->session->userdata('cart_contents');
-			$data['te'] = $this->carro_model->validar_compra();			
-			$this->load->view('test', $data);			
+		public function index() {			
+			$this->load->view('carro');			
 		}
 		
 		public function agregar_producto() {
@@ -45,14 +43,16 @@
 
 		public function comprar_carro() {
 			$info = $this->carro_model->validar_compra();
-			if(! isset($info['error'])) {
+			if($info['error']) {
 				$this->carro_model->insert_carro();
-				$data['info'] = 'Gracias por su compra.';
+				$data['info'] = 'Gracias por su compra, vuelva pronto por favor que tengo que comer';
+				$this->cart->destroy();
 			} else {
 				unset($info['error']);
-				$data['info'] = $info; 
+				$data['info'] = $info;
+				$data['error'] = 1; 
 			}
-			$this->load->view('carro', $data); 
+			$this->load->view('carro_compra', $data); 
 		}
 	}
 	
