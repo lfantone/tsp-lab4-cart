@@ -8,7 +8,7 @@
 	
 		public function index() {
 			if($this->session->userdata('e-mail')) {
-				redirect('cart');
+				redirect('main');
 			} else {
 				$this->load->view('login');
 			}			       
