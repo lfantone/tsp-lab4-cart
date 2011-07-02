@@ -24,8 +24,15 @@
 			if ($this->form_validation->run() == FALSE)	{
 				$this->index();
 			} else {
-				$this->alta_model->insert_productos($this->input->post('descripcion'), $this->input->post('precio'), $this->input->post('stock'), $this->input->post('categoria'), $this->input->post('proveedor'),$this->input->post('oferta') );
-				$this->index();
+				if($this->alta_model->insert_productos($this->input->post('descripcion'), $this->input->post('precio'), $this->input->post('stock'), $this->input->post('categoria'), $this->input->post('proveedor'),$this->input->post('oferta'))) {
+					$this->index();	
+				} else {
+					$data['error'] = '<p>Ya existe un producto con esa descripci&oacute;n</p>';
+					$data['proveedores'] = $this->alta_model->get_proveedores();
+					$data['categorias'] = $this->alta_model->get_categorias();
+					$this->load->view('alta_producto', $data);
+				} 
+				
 			}
 		}
 		
@@ -33,9 +40,13 @@
 			$this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|min_length[5]|max_length[50]|alpha_numeric_spaces');
 			if ($this->form_validation->run() == FALSE)	{
 				$this->load->view('alta_categoria');
-			} else {				
-				$this->alta_model->insert_categoria($this->input->post('nombre'));
-				$this->load->view('alta_categoria');
+			} else {
+				if ($this->alta_model->insert_categoria($this->input->post('nombre'))) {
+					$this->load->view('alta_categoria');	
+				} else {
+					$data['error'] = '<p>Ya existe una categor&iacute;a con ese nombre</p>';
+					$this->load->view('alta_categoria', $data);
+				}				
 			}
 		}
 	
@@ -48,8 +59,12 @@
 			if ($this->form_validation->run() == FALSE)	{
 				$this->load->view('alta_proveedor');
 			} else {
-				$this->alta_model->insert_proveedor($this->input->post('razon_social'),$this->input->post('telefono'),$this->input->post('nombre_calle'),$this->input->post('numero_calle'),$this->input->post('localidad'));
-				$this->load->view('alta_proveedor');				
+				if($this->alta_model->insert_proveedor($this->input->post('razon_social'),$this->input->post('telefono'),$this->input->post('nombre_calle'),$this->input->post('numero_calle'),$this->input->post('localidad'))) {
+					$this->load->view('alta_proveedor');
+				} else {
+					$data['error'] = '<p>Ya existe un proveedor con ese nombre</p>';
+					$this->load->view('alta_proveedor', $data);				
+				}							
 			}
 		}	
 	}

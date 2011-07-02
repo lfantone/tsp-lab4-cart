@@ -18,8 +18,8 @@
 		</div>
 	<?php 
 		if(!$this->cart->contents()) {  
-	    	echo '<p>No tenés ning&uacute;n producto.</p>';  
-		} else {
+	    	echo '<p>No ten&eacute;s ning&uacute;n producto.</p>';  
+		} else {			
 			echo form_open('carro/actualizar_carro');?>  
 				<table width="100%" cellpadding="0" cellspacing="0">  
 	    			<thead>  
@@ -50,6 +50,7 @@
 	    			</tbody>  
 				</table>  
 			<p><?php echo form_submit('actualizar', 'Actualizar'); 
+					 echo anchor('carro/comprar_carro', 'Comprar');
 					 echo anchor('carro/vaciar_carro', 'Vaciar', 'class="vaciar"');?></p>  
 			<p><small>Si se introduce una cantidad igual a 0 se borrará el producto del carrito.</small></p>  
 	<?php  

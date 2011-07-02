@@ -13,6 +13,7 @@
 		<div id="header" class="info">
 			<h2>Agregar nuevo producto</h2>
 		</div>
+		<?php if(isset($error)){ echo $error; }?>
 		<ul>	
 			<li class="item1">
 				<?php echo form_label('Descripci&oacute;n', 'descripcion');?>
@@ -29,7 +30,7 @@
 			<li class="item3">
 				<?php echo form_label('Stock', 'stock');?>
 				<div>
-					<?php echo form_input('stock', set_value('Stock'), 'size="8" tabindex="3" maxlength="2"');echo form_error('stock');?>
+					<?php echo form_input('stock', set_value('stock'), 'size="8" tabindex="3" maxlength="2"');echo form_error('stock');?>
 				</div>
 			</li>			
 			<li class="item4">				
