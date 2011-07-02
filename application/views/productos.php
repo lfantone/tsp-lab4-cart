@@ -18,10 +18,10 @@
 		</div> 
 		<div id="categorias">
 			<?php echo form_open('productos');?>
-			<?php echo form_dropdown('categoria', $categoria);?>
+			<?php echo form_dropdown('categoria', $categoria, 'all');?>
 			<?php echo form_submit('ok', 'Ok!');?>
 			<?php echo form_close();?>
-			<?php if(isset($error_cat))	{ echo "<p>".$error."</p>"; } ?>
+			<?php if(isset($error_cat))	{ echo "<p>".$error_cat."</p>"; } ?>
 		</div>
 		<?php if(!isset($error_pro)) {?>
 			<table width="100%" cellpadding="0" cellspacing="0" class="productos_lista">  
@@ -54,7 +54,7 @@
 			   	</tbody>
 			</table>
 		<?php } else {
-			echo "<p>".$error."</p>";
+			echo "<p>".$error_pro."</p>";
 		}?>
 		<div class="carrito_lista">
 			<h3>Tu carrito :</h3>

@@ -10,7 +10,7 @@
 			if($this->input->post('categoria')) {
 				$data['productos'] = $this->carro_model->get_productos_categoria($this->input->post('categoria'));
 				if ($data['productos'] == 1) {
-					if(!$this->input->post('categoria') == 'all') {
+					if($this->input->post('categoria') <> 'all') {
 						$data['error_cat'] = 'No hay productos registrados en esa categor&iacute;a';	
 					}					
 					$data['productos'] = $this->carro_model->get_productos();
