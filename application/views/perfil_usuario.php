@@ -15,13 +15,13 @@
 			<li class="item1">
 				<?php echo form_label('Nombre', 'nombre');?>
 				<div>
-					<?php echo form_input('nombre', $usuario[0]['nombre'], 'tabindex="1" maxlength="50"'); echo form_error('nombre');?>
+					<?php echo form_input('nombre', $usuario[0]['nombre'], 'tabindex="1" maxlength="50" disabled="disabled"'); echo form_error('nombre');?>
 				</div>
 			</li>			
 			<li class="item2">
 				<?php echo form_label('Apellido', 'apellido');?>
 				<div>
-					<?php echo form_input('apellido', $usuario[0]['apellido'], 'tabindex="2" maxlength="50"');echo form_error('apellido');?>
+					<?php echo form_input('apellido', $usuario[0]['apellido'], 'tabindex="2" maxlength="50" disabled="disabled"');echo form_error('apellido');?>
 				</div>
 			</li>			
 			<li class="item3">
@@ -38,8 +38,8 @@
 			</li>
 			<li class="item5">				
 				<?php echo form_label('Direcci&oacute;n de e-mail', 'e-mail');?>
+					<?php echo form_input('email', $usuario[0]['mail'], 'tabindex="5" maxlength="50" disabled="disabled"'); echo form_error('e-mail');?>
 				<div>
-					<?php echo form_input('email', $usuario[0]['mail'], 'tabindex="5" maxlength="50"'); echo form_error('e-mail');?>
 				</div>
 			</li>
 			<li class="item6">				
@@ -62,7 +62,7 @@
 			</li>
 			<li class="button">
 				<div>
-					<?php echo form_submit('agregar', 'Agregar', 'class="btSubmit"');?>
+					<?php echo form_submit('agregar', 'Modificar mis datos', 'class="btSubmit"');?>
 				</div>
 			</li>			
 		</ul>

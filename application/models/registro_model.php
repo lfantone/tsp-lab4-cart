@@ -29,6 +29,42 @@
 			return TRUE;
 		}
 		
+		public function update_User ($mail, $addr, $addr_no, $city)
+		{
+			$this->db->select('id_domicilio');
+			$this->db->where('mail', $mail);
+			$query = $this->db->get('usuarios');
+							
+			$domicilio = array(
+						'nombre_calle' => $addr, 
+						'numero_calle' => $addr_no, 
+						'localidad' => $city);
+			
+			$this->db->where('id_domicilio', $query->row()->id_domicilio);
+			$this->db->update('domicilios', $domicilio);
+		}
+		
+		public function update_User_and_pass ($pwd, $mail, $addr, $addr_no, $city)
+		{
+			$this->db->select('id_domicilio');
+			$this->db->where('mail', $mail);
+			$query = $this->db->get('usuarios');
+							
+			$domicilio = array(
+						'nombre_calle' => $addr, 
+						'numero_calle' => $addr_no, 
+						'localidad' => $city);
+			
+			$this->db->where('id_domicilio', $query->row()->id_domicilio);
+			$this->db->update('domicilios', $domicilio);
+			
+			
+			$usuario = array(
+						'password' => $pwd);
+			$this->db->where('mail', $mail);
+			$this->db->update('usuarios', $usuario);
+		}
+		
 		public function GetUser ($email)
 		{
 			$this->db->select('*');
