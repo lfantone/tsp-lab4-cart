@@ -4,8 +4,10 @@
 	<title>Mi perfil</title>
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/structure.css" type="text/css" />
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/form.css" type="text/css" />
+	<link href="<?=base_url()?>assets/css/banner.css" rel="stylesheet"  type="text/css" />  
 </head>
 <body id="public">
+	<?php $this->view('banner.php')?>
 	<div id="container">
 		<?php echo form_open('perfil/new_user');?>	
 		<header id="header" class="info">
@@ -64,8 +66,14 @@
 				<div>
 					<?php echo form_submit('agregar', 'Modificar mis datos', 'class="btSubmit"');?>
 				</div>
-			</li>			
+			</li>
+			<li class="button">
+				<div>
+					<?php echo anchor('perfil_usuario/ultimo_carro', 'Ir al ultimo carro', 'class="btSubmit"');?>
+			</li>						
+				</div>
 		</ul>
+
 		<?php echo form_close();?>
 	</div>
 </body>
