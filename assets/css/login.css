@@ -117,8 +117,8 @@ backgroundPopup {
 	display:none;  
 	position:fixed;  
 	_position:absolute; /* hack for internet explorer 6*/  
-	height: 170px;  
-	width: 215px;  
+	height: 200px;  
+	width: 265px;  
 	background:#FFFFFF;  
 	border:2px solid #cecece;  
 	z-index:2;  

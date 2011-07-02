@@ -63,17 +63,7 @@
 						'password' => $pwd);
 			$this->db->where('mail', $mail);
 			$this->db->update('usuarios', $usuario);
-		}
-		
-		public function GetUser ($email)
-		{
-			$this->db->select('*');
-			$this->db->where('mail', $email);
-			$this->db->join('domicilios', 'usuarios.id_domicilio = domicilios.id_domicilio');
-			$query = $this->db->get('usuarios');
-			//$this->db->join('comments', 'comments.id = blogs.id');
-			return $query->result_array();
-		}
+		}		
                 
         public function CheckIfExist($email) {
 			$query = $this->db->where('mail',$email);
@@ -84,17 +74,5 @@
 			else
 				return FALSE;
 		}
-		
-		private function rearrange_array($d, $data = array()) {    	  	
-	    	foreach ($d as $row) {
-	    			$values = array_values($row);
-	    			if (count($values) === 2) {
-	    				$key = $values[0];
-	    				$val = $values[1];    				
-	    				$data[$key] = $val;
-	    			}   			
-	    	}   	
-	    	return $data;
-	    }
 	}
 ?>

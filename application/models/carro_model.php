@@ -34,26 +34,30 @@
 		}				
 		
 		public function insert_carro() {
-			foreach ($this->cart->contents() as $items) {
+			$this->db->select('id_usuario');
+			$this->db->where('mail',$this->session->userdata('e-mail'));
+			$result = $this->db->get('usuarios');
+			if ($result->num_rows > 0) {
 				$data = array(
+					'id_usuario' => $result->row()->id_usuario);
+				$this->db->insert('carritos', $data);
+				$this->db->select('id_carrito');
+				$this->db->order_by('id_carrito', 'DESC');
+				$query = $this->db->get('carritos', 1);	
+				if ($query->num_rows > 0) {
+					foreach ($this->cart->contents() as $items) {
+						$data = array(
+							'id_carrito' => $query->row()->id_carrito,
 							'id_producto' => $items['id'],
 							'precio' => $items['price'],
 							'cantidad' => $items['qty']);
-				$this->db->insert('carritos_productos', $data);
-			}
-			$this->db->select('id_carrito');
-			$this->db->order_by('id_carrito', 'ASC');
-			$query = $this->db->get('carritos_productos');
-			$this->db->select('id_usuario');
-			$this->db->where('mail', $this->session->userdata('e-mail'));
-			$result = $this->db->get('usuarios');
-			if ($query->num_rows() > 0 && $result->num_rows() > 0) {
-				$data = array(
-						'id_carrito' => $query->row()->id_carrito,
-						'id_usuario' => $result->row()->id_usuario);
-				$this->db->insert('carritos', $data);
-				return 	TRUE;
-			}
+						$this->db->insert('carritos_productos', $data);				
+					}
+				} else {
+					return FALSE;		
+				}
+				return TRUE;
+			}						
 			return FALSE;
 		}
 		

@@ -3,18 +3,18 @@
 	
 		public function __construct() {
 			parent::__construct();
-			$this->load->model('registro_model');		
-					
-			if (!$this->session->userdata('e-mail'))
+			$this->load->model('perfil_model');					
+			if (!$this->session->userdata('e-mail')) {
 				redirect('login');
+			}
 		}
 		
 		public function index() {
-			$data['usuario'] = $this->registro_model->GetUser($this->session->userdata('e-mail'));
+			$data['usuario'] = $this->perfil_model->GetUser($this->session->userdata('e-mail'));
 			$this->load->view('perfil_usuario', $data);			
 		}
 		
-		public function new_user() {
+		public function mod_user() {
 
 			$this->form_validation->set_rules('password', 'Contrase&ntilde;a', 'min_length[8]|max_length[30]|md5');
 			$this->form_validation->set_rules('passconf', 'Confirme su contrase&ntilde;a', 'matches[password]|md5');
@@ -28,14 +28,23 @@
 			else {			/* VALIDACIONES */
 				if ($this->input->post('password') != "")
 				{
-					$this->registro_model->update_User_and_pass($this->input->post('password'), $this->session->userdata('e-mail'), $this->input->post('direccion'), $this->input->post('numero_calle'), $this->input->post('localidad'));
+					$this->perfil_model->update_User_and_pass($this->input->post('password'), $this->session->userdata('e-mail'), $this->input->post('direccion'), $this->input->post('numero_calle'), $this->input->post('localidad'));
 				}
 				else 
 				{
-					$this->registro_model->update_User($this->session->userdata('e-mail'), $this->input->post('direccion'), $this->input->post('numero_calle'), $this->input->post('localidad'));
+					$this->perfil_model->update_User($this->session->userdata('e-mail'), $this->input->post('direccion'), $this->input->post('numero_calle'), $this->input->post('localidad'));
 				}
 				redirect('main');
 			}
+		}
+		
+		public function ultimo_carro() {
+			if($data['productos'] = $this->perfil_model->get_carro()) {
+				$this->load->view('perfil_carro', $data);
+			} else {
+				$data['error'] = '<p>Nada para mostrar</p>';
+				$this->load->view('perfil_carro', $data);
+			}			
 		}
 	}
 ?>

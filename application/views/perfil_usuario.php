@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
 <html>
 <head>
 	<title>Mi perfil</title>
@@ -9,10 +9,10 @@
 <body id="public">
 	<?php $this->view('banner.php')?>
 	<div id="container">
-		<?php echo form_open('perfil/new_user');?>	
-		<header id="header" class="info">
+		<?php echo form_open('perfil/mod_user');?>	
+		<div id="header" class="info">
 			<h2>Mi perfil</h2>
-		</header>
+		</div>
 		<ul>	
 			<li class="item1">
 				<?php echo form_label('Nombre', 'nombre');?>
@@ -65,16 +65,16 @@
 			<li class="button">
 				<div>
 					<?php echo form_submit('agregar', 'Modificar mis datos', 'class="btSubmit"');?>
+					<?php echo form_close();?>
 				</div>
 			</li>
 			<li class="button">
 				<div>
-					<?php echo anchor('perfil_usuario/ultimo_carro', 'Ir al ultimo carro', 'class="btSubmit"');?>
-			</li>						
+					<?php echo form_open('perfil/ultimo_carro');
+					 	  echo form_submit('', 'Ver ultima compra');?>
 				</div>
-		</ul>
-
-		<?php echo form_close();?>
+			</li>			
+		</ul>		
 	</div>
 </body>
 </html>

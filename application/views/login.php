@@ -2,10 +2,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Cart Login</title>
-	<link href="http://localhost/tsp-lab4-cart/assets/css/login.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="<?=base_url()?>/assets/js/jquery-1.6.1.min.js"></script>  
-    <script src="<?=base_url()?>/assets/js/popup.js" type="text/javascript"></script> 
+	<title>iCart Login</title>
+	<link href="<?=base_url()?>assets/css/login.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?=base_url()?>assets/js/jquery-1.6.1.min.js"></script>  
+    <script src="<?=base_url()?>assets/js/popup.js" type="text/javascript"></script> 
 </head>
 <body>
 	<div id="content">

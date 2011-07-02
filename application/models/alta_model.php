@@ -48,7 +48,8 @@ class Alta_model extends CI_Model {
 				'id_categoria' => $id_categoria,
 				'imagen'=>str_replace (' ','-',$descripcion));
         $this->db->insert('productos', $data);
-    }
+    	return TRUE;
+	}
 	
     public function insert_categoria($nombre) {
     	$this->db->where('nombre', $nombre);
