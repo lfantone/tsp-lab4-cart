@@ -28,6 +28,52 @@
 			
 			return TRUE;
 		}
+		
+		public function update_User ($mail, $addr, $addr_no, $city)
+		{
+			$this->db->select('id_domicilio');
+			$this->db->where('mail', $mail);
+			$query = $this->db->get('usuarios');
+							
+			$domicilio = array(
+						'nombre_calle' => $addr, 
+						'numero_calle' => $addr_no, 
+						'localidad' => $city);
+			
+			$this->db->where('id_domicilio', $query->row()->id_domicilio);
+			$this->db->update('domicilios', $domicilio);
+		}
+		
+		public function update_User_and_pass ($pwd, $mail, $addr, $addr_no, $city)
+		{
+			$this->db->select('id_domicilio');
+			$this->db->where('mail', $mail);
+			$query = $this->db->get('usuarios');
+							
+			$domicilio = array(
+						'nombre_calle' => $addr, 
+						'numero_calle' => $addr_no, 
+						'localidad' => $city);
+			
+			$this->db->where('id_domicilio', $query->row()->id_domicilio);
+			$this->db->update('domicilios', $domicilio);
+			
+			
+			$usuario = array(
+						'password' => $pwd);
+			$this->db->where('mail', $mail);
+			$this->db->update('usuarios', $usuario);
+		}
+		
+		public function GetUser ($email)
+		{
+			$this->db->select('*');
+			$this->db->where('mail', $email);
+			$this->db->join('domicilios', 'usuarios.id_domicilio = domicilios.id_domicilio');
+			$query = $this->db->get('usuarios');
+			//$this->db->join('comments', 'comments.id = blogs.id');
+			return $query->result_array();
+		}
                 
         public function CheckIfExist($email) {
 			$query = $this->db->where('mail',$email);
@@ -38,5 +84,17 @@
 			else
 				return FALSE;
 		}
+		
+		private function rearrange_array($d, $data = array()) {    	  	
+	    	foreach ($d as $row) {
+	    			$values = array_values($row);
+	    			if (count($values) === 2) {
+	    				$key = $values[0];
+	    				$val = $values[1];    				
+	    				$data[$key] = $val;
+	    			}   			
+	    	}   	
+	    	return $data;
+	    }
 	}
 ?>

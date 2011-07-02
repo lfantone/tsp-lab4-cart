@@ -7,6 +7,6 @@
 <body>		
 	<h3>Usted se ha registrado correctamente</h3>
 	<!--CAMBIAR URL POR PAGINA PRINCIPAL-->
-	<p><?php echo anchor('login', 'Ir a la p&aacute;gina principal'); ?></p>
+	<p><?php echo anchor('main', 'Ir a la p&aacute;gina principal'); ?></p>
 </body>
 </html>

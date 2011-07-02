@@ -24,8 +24,9 @@
 				$this->load->view('registro_usuario');
 			} else {			/* VALIDACIONES */
 				if ($this->registro_model->insert_newUser($this->input->post('nombre'), $this->input->post('apellido'), $this->input->post('password'), $this->input->post('email'), $this->input->post('direccion'), $this->input->post('numero_calle'), $this->input->post('localidad'))) {
-					$this->load->view('registro_correcto');
 					$this->load->library('session');
+					$this->session->set_userdata('e-mail', $this->input->post('email'));
+					$this->load->view('registro_correcto');
 				} else {
 					$this->load->view('registroErr');
 				}	
